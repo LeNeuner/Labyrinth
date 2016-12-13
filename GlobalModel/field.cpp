@@ -663,6 +663,7 @@ void Field::setWallsPositions(GameSettings *settings, Position &pos, int &blocke
 {
     int y = pos.y;
     int x = pos.x;
+    qDebug() << "y = " << y;
 
     int rightRandom = false;
     while (!rightRandom)

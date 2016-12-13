@@ -1,0 +1,10 @@
+#ifndef GLOBALS_H
+#define GLOBALS_H
+
+// ADD: Определение платформы и ОС,
+// константы размеров окон в зависимости от платформ
+
+const int APP_WIDTH     = 1200;
+const int APP_HEIGHT    = 1000;
+
+#endif // GLOBALS_H

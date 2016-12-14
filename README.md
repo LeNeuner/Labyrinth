@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2016-09-10T11:38:09
+# Project created by QtCreator
 # Labyrinth
 # Authors: Karimov Konstantin, Karimov Ashat
 #-------------------------------------------------

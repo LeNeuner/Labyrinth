@@ -132,6 +132,13 @@ void Field::createField(GameSettings *settings)
             setWallsPositions(settings, pos, blockedCellsNum);
         }
     }
+
+    //  определение положения выходов
+    setExits(settings);
+
+    // определение положения ям
+    if (settings->holeTypeNum() != 0)
+        setHoles(settings);
 }
 //--------------------------------------------------------------------------------
 
@@ -861,5 +868,119 @@ void Field::blockSingleWall(Position &pos)
         cell[y+2][x+1].setBlocked(true);
     if (cell[y+1][x].materialType() == MaterialType::Wall)
         cell[y+1][x].setBlocked(true);
+}
+
+
+//  определение положения выходов
+void Field::setExits(GameSettings *settings)
+{
+    // up exit
+    int rightRandom = false;
+    while (!rightRandom)
+    {
+        int y = 1;
+        int x = (rand() % settings->fieldWidth() + 1) * 2;
+        if ((cell[y+1][x].objectType() != ObjectType::RealTreasure) &&
+            (cell[y+1][x].objectType() != ObjectType::FakeTreasure) &&
+            (cell[y+1][x].objectType() != ObjectType::Arsenal))
+        {
+            cell[y][x].setMaterialType(MaterialType::Exit);
+            rightRandom = true;
+        }
+    }
+    // right exit
+    rightRandom = false;
+    while (!rightRandom)
+    {
+        int y = (rand() % settings->fieldHeight() + 1) * 2;
+        int x = (settings->fieldWidth() * 2 + 3) - 2;
+        if ((cell[y][x-1].objectType() != ObjectType::RealTreasure) &&
+            (cell[y][x-1].objectType() != ObjectType::FakeTreasure) &&
+            (cell[y][x-1].objectType() != ObjectType::Arsenal))
+        {
+            cell[y][x].setMaterialType(MaterialType::Exit);
+            rightRandom = true;
+        }
+    }
+    // bottom exit
+    rightRandom = false;
+    while (!rightRandom)
+    {
+        int y = (settings->fieldHeight() * 2 + 3) - 2;
+        int x = (rand() % settings->fieldWidth() + 1) * 2;
+        if ((cell[y-1][x].objectType() != ObjectType::RealTreasure) &&
+            (cell[y-1][x].objectType() != ObjectType::FakeTreasure) &&
+            (cell[y-1][x].objectType() != ObjectType::Arsenal))
+        {
+            cell[y][x].setMaterialType(MaterialType::Exit);
+            rightRandom = true;
+        }
+    }
+    // left exit
+    rightRandom = false;
+    while (!rightRandom)
+    {
+        int y = (rand() % settings->fieldHeight() + 1) * 2;
+        int x = 1;
+        if ((cell[y][x+1].objectType() != ObjectType::RealTreasure) &&
+            (cell[y][x+1].objectType() != ObjectType::FakeTreasure) &&
+            (cell[y][x+1].objectType() != ObjectType::Arsenal))
+        {
+            cell[y][x].setMaterialType(MaterialType::Exit);
+            rightRandom = true;
+        }
+    }
+}
+
+
+// определение положения ям
+void Field::setHoles(GameSettings *settings)
+{
+    int holeNum = 0;
+    while (holeNum != 2)
+    {
+        int y = (rand() % settings->fieldHeight() + 1) * 2;
+        int x = (rand() % settings->fieldWidth() + 1) * 2;
+
+        if ((cell[y][x].objectType() != ObjectType::RealTreasure) &&
+            (cell[y][x].objectType() != ObjectType::FakeTreasure) &&
+            (cell[y][x].objectType() != ObjectType::Arsenal) &&
+            (cell[y][x].objectType() != ObjectType::Hole))
+        {
+            cell[y][x].setObjectType(ObjectType::Hole);
+            holeNum++;
+
+            if (holeNum == 1)
+                cell[y][x].setHoleType(HoleType::TypeI);
+            else
+                cell[y][x].setHoleType(HoleType::TypeII);
+        }
+    }
+
+    if (settings->holeTypeNum() > 1)
+    {
+        holeNum = 0;
+        while (holeNum != 3)
+        {
+            int y = (rand() % settings->fieldHeight() + 1) * 2;
+            int x = (rand() % settings->fieldWidth() + 1) * 2;
+
+            if ((cell[y][x].objectType() != ObjectType::RealTreasure) &&
+                (cell[y][x].objectType() != ObjectType::FakeTreasure) &&
+                (cell[y][x].objectType() != ObjectType::Arsenal) &&
+                (cell[y][x].objectType() != ObjectType::Hole))
+            {
+                cell[y][x].setObjectType(ObjectType::Hole);
+                holeNum++;
+
+                if (holeNum == 1)
+                    cell[y][x].setHoleType(HoleType::TypeA);
+                else if (holeNum == 2)
+                    cell[y][x].setHoleType(HoleType::TypeB);
+                else
+                    cell[y][x].setHoleType(HoleType::TypeC);
+            }
+        }
+    }
 }
 //--------------------------------------------------------------------------------

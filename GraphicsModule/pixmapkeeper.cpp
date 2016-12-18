@@ -17,6 +17,8 @@ PixmapKeeper::PixmapKeeper(int bigSize, int smallSize) :
     QPixmap *dest_res       = new QPixmap(QLatin1String(":resources/images/dest_res.png"));
     QPixmap *treasure       = new QPixmap(QLatin1String(":resources/images/treasure.png"));
     QPixmap *arsenal        = new QPixmap(QLatin1String(":resources/images/arsenal.png"));
+    QPixmap *hole_type1     = new QPixmap(QLatin1String(":resources/images/hole_type1.png"));
+    QPixmap *hole_type2     = new QPixmap(QLatin1String(":resources/images/hole_type2.png"));
 
     QPixmap scField         = field->scaled(        big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scFlour         = flour->scaled(        big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
@@ -31,6 +33,8 @@ PixmapKeeper::PixmapKeeper(int bigSize, int smallSize) :
     QPixmap scDest_res      = dest_res->scaled(     big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scTreasure      = treasure->scaled(     big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scArsenal       = arsenal->scaled(      big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+    QPixmap scHoleType1     = hole_type1->scaled(   big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+    QPixmap scHoleType2     = hole_type2->scaled(   big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
 
     m_field                 = new QPixmap(scField);
     m_flour                 = new QPixmap(scFlour);
@@ -45,6 +49,8 @@ PixmapKeeper::PixmapKeeper(int bigSize, int smallSize) :
     m_dest_res              = new QPixmap(scDest_res);
     m_treasure              = new QPixmap(scTreasure);
     m_arsenal               = new QPixmap(scArsenal);
+    m_hole_type1            = new QPixmap(scHoleType1);
+    m_hole_type2            = new QPixmap(scHoleType2);
 
     QMatrix rm;
     rm.rotate(180);
@@ -93,6 +99,8 @@ PixmapKeeper::~PixmapKeeper()
     delete m_dest_res_rotate;
     delete m_treasure;
     delete m_arsenal;
+    delete m_hole_type1;
+    delete m_hole_type2;
 
     delete m_t1_gor;
     delete m_t1_ver;
@@ -172,6 +180,16 @@ QPixmap *PixmapKeeper::treasure()
 QPixmap *PixmapKeeper::arsenal()
 {
     return m_arsenal;
+}
+
+QPixmap *PixmapKeeper::hole_type1()
+{
+    return m_hole_type1;
+}
+
+QPixmap *PixmapKeeper::hole_type2()
+{
+    return m_hole_type2;
 }
 
 QPixmap *PixmapKeeper::test_ver()

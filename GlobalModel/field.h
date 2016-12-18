@@ -75,6 +75,10 @@ private:
     int blockWallNumCalc(Position &pos);
     // блокировка единственной стены в блоке
     void blockSingleWall(Position &pos);
+    // определение положения выходов
+    void setExits(GameSettings *settings);
+    // определение положения ям
+    void setHoles(GameSettings *settings);
 };
 
 #endif // FIELD_H

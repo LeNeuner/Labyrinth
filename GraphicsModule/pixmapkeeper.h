@@ -25,6 +25,8 @@ public:
     QPixmap *dest_res_rotate();
     QPixmap *treasure();
     QPixmap *arsenal();
+    QPixmap *hole_type1();
+    QPixmap *hole_type2();
 
     QPixmap *test_ver();
     QPixmap *test_gor();
@@ -51,6 +53,8 @@ private:
     QPixmap *m_dest_res_rotate;
     QPixmap *m_treasure;
     QPixmap *m_arsenal;
+    QPixmap *m_hole_type1;
+    QPixmap *m_hole_type2;
 
     QPixmap *m_t1_ver;
     QPixmap *m_t1_gor;

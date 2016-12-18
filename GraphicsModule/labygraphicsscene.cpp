@@ -169,6 +169,10 @@ QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
                 else if (model->fieldModel->cell[y][x].formType() == FormType::Pillar)
                     currPixmap = pixmaps->concrete_pillar();
             }
+            else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Exit)
+            {
+                currPixmap = pixmaps->flour();
+            }
 
 
             if ((model->fieldModel->cell[y][x].objectType() == ObjectType::RealTreasure) ||
@@ -177,6 +181,15 @@ QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
 
             if (model->fieldModel->cell[y][x].objectType() == ObjectType::Arsenal)
                 currPixmap = pixmaps->arsenal();
+
+            if ((model->fieldModel->cell[y][x].holeType() == HoleType::TypeI) ||
+                (model->fieldModel->cell[y][x].holeType() == HoleType::TypeII))
+                currPixmap = pixmaps->hole_type1();
+
+            if ((model->fieldModel->cell[y][x].holeType() == HoleType::TypeA) ||
+                (model->fieldModel->cell[y][x].holeType() == HoleType::TypeB) ||
+                (model->fieldModel->cell[y][x].holeType() == HoleType::TypeC))
+                currPixmap = pixmaps->hole_type2();
 
             if ((model->fieldModel->cell[y][x].testVisitedNum != 0) &&
                 (model->fieldModel->cell[y][x].formType() == FormType::Square) &&
@@ -221,6 +234,7 @@ QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
 
                 //--------------------------------------------------
             }
+
 
             item = new BasicRect(currPixmap, cellSize, text);
             grid->addItem(item, y, x);

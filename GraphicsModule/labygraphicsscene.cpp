@@ -135,6 +135,8 @@ QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
         {
             QPixmap *testPixmap = nullptr;
             QString text = "";
+
+            // форма поля
             if (model->fieldModel->cell[y][x].formType() == FormType::Square)
                 cellSize = QSizeF(big, big);
             else if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
@@ -144,7 +146,7 @@ QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
             else if (model->fieldModel->cell[y][x].formType() == FormType::Pillar)
                 cellSize = QSizeF(small, small);
 
-
+            // материал поля
             if (model->fieldModel->cell[y][x].materialType() == MaterialType::None)
                 currPixmap = pixmaps->field();
             else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Field)
@@ -175,64 +177,26 @@ QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
             }
 
 
+            // тип объекта в поле
             if ((model->fieldModel->cell[y][x].objectType() == ObjectType::RealTreasure) ||
                 (model->fieldModel->cell[y][x].objectType() == ObjectType::FakeTreasure))
                 currPixmap = pixmaps->treasure();
-
-            if (model->fieldModel->cell[y][x].objectType() == ObjectType::Arsenal)
+            else if (model->fieldModel->cell[y][x].objectType() == ObjectType::Arsenal)
                 currPixmap = pixmaps->arsenal();
-
-            if ((model->fieldModel->cell[y][x].holeType() == HoleType::TypeI) ||
+            else if ((model->fieldModel->cell[y][x].holeType() == HoleType::TypeI) ||
                 (model->fieldModel->cell[y][x].holeType() == HoleType::TypeII))
                 currPixmap = pixmaps->hole_type1();
-
-            if ((model->fieldModel->cell[y][x].holeType() == HoleType::TypeA) ||
+            else if ((model->fieldModel->cell[y][x].holeType() == HoleType::TypeA) ||
                 (model->fieldModel->cell[y][x].holeType() == HoleType::TypeB) ||
                 (model->fieldModel->cell[y][x].holeType() == HoleType::TypeC))
                 currPixmap = pixmaps->hole_type2();
+
 
             if ((model->fieldModel->cell[y][x].testVisitedNum != 0) &&
                 (model->fieldModel->cell[y][x].formType() == FormType::Square) &&
                 (model->fieldModel->cell[y][x].objectType() != ObjectType::Arsenal))
             {
                 text = QString::number(model->fieldModel->cell[y][x].testVisitedNum);
-
-                // TEST LINE
-                //--------------------------------------------------
-                int Z  = model->fieldModel->cell[y][x].testVisitedNum;
-                int LZ = model->fieldModel->cell[y][x-2].testVisitedNum;
-                int RZ = model->fieldModel->cell[y][x+2].testVisitedNum;
-                int UZ = model->fieldModel->cell[y-2][x].testVisitedNum;
-                int BZ = model->fieldModel->cell[y+2][x].testVisitedNum;
-
-
-//                if ((( RZ == Z + 1) && ( LZ == Z - 1)) ||
-//                    (( RZ == Z - 1) && ( LZ == Z + 1)))
-//                        testPixmap = pixmaps->test_gor();
-
-//                else if ((( UZ == Z + 1) && ( BZ == Z - 1)) ||
-//                         (( UZ == Z - 1) && ( BZ == Z + 1)))
-//                             testPixmap = pixmaps->test_ver();
-
-//                else if ((( LZ == Z + 1) && ( BZ == Z - 1)) ||
-//                         (( LZ == Z - 1) && ( BZ == Z + 1)))
-//                             testPixmap = pixmaps->test_lb();
-
-//                else if ((( LZ == Z + 1) && ( UZ == Z - 1)) ||
-//                         (( LZ == Z - 1) && ( UZ == Z + 1)))
-//                             testPixmap = pixmaps->test_lu();
-
-//                else if ((( UZ == Z + 1) && ( RZ == Z - 1)) ||
-//                         (( UZ == Z - 1) && ( RZ == Z + 1)))
-//                             testPixmap = pixmaps->test_ru();
-
-//                else if ((( RZ == Z + 1) && ( BZ == Z - 1)) ||
-//                         (( RZ == Z - 1) && ( BZ == Z + 1)))
-//                             testPixmap = pixmaps->test_rb();
-//                else
-//                    testPixmap = pixmaps->test_cross();
-
-                //--------------------------------------------------
             }
 
 

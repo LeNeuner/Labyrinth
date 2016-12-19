@@ -101,11 +101,9 @@ void LabyMainWindow::setGlobalParamModel()
 {
     // модель по умолчанию
     glModel->setDefaults();
+    settWind->setGlobalModel(glModel);
     graphManager->setGlobalModel(glModel);
 //    comListWind->setGlobalModel(glModel);
-//    mesListWind->setGlobalModel(glModel);
-//    hotkeysWind->setGlobalModel(glModel);
-//    settManager->setGlobalModel(glModel);
 
     // модель из файла
 //    QString folder = QCoreApplication::applicationDirPath();

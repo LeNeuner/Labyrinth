@@ -7,7 +7,6 @@
 *.la
 *.lai
 *.so
-*.dll
 *.dylib
 
 # Qt-es
@@ -36,4 +35,8 @@ Makefile*
 # QtCtreator CMake
 CMakeLists.txt.user
 
-/Labyrinth.pro.user
+
+# folders
+debug/
+Labyrinth_build/
+Labyrinth_debug/

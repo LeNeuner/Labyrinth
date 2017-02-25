@@ -1,0 +1,23 @@
+<RCC>
+ <qresource>
+  <file>resources/images/test.png</file>
+  <file>resources/images/field.png</file>
+  <file>resources/images/flour.png</file>
+  <file>resources/images/grass.png</file>
+  <file>resources/images/wall_ver.png</file>
+  <file>resources/images/wall_gor.png</file>
+  <file>resources/images/wall_pillar.png</file>
+  <file>resources/images/concrete_ver.png</file>
+  <file>resources/images/concrete_gor.png</file>
+  <file>resources/images/concrete_pillar.png</file>
+  <file>resources/images/wall_gor_dest.png</file>
+  <file>resources/images/dest_res.png</file>
+  <file>resources/images/treasure.png</file>
+  <file>resources/images/arsenal.png</file>
+  <file>resources/images/hole_type1.png</file>
+  <file>resources/images/hole_type2.png</file>
+  <file>resources/images/t1.png</file>
+  <file>resources/images/t2.png</file>
+  <file>resources/images/t3.png</file>
+ </qresource>
+</RCC>

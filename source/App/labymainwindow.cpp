@@ -50,7 +50,7 @@ void LabyMainWindow::setMainMenu()
     actNewGame->setStatusTip("Начать новую игру");
     actNewGame->setWhatsThis("Начать новую игру");
     actNewGame->setIcon(QPixmap(":AppIcon"));
-    connect(actNewGame, SIGNAL(triggered()), SLOT(slotNoImp()));
+    connect(actNewGame, SIGNAL(triggered()), SLOT(createNewGame()));
 
     // настройки
     QAction* actSettings = new QAction("open settings window", 0);
@@ -128,13 +128,26 @@ void LabyMainWindow::settingsWindowOpen()
     int winResult;
     winResult = settWind->exec();
 
-    Q_UNUSED(winResult);
+    qDebug() << "---";
+    // выход, если добавление отменено (несохранено)
+    if (winResult == QDialog::Rejected)
+        return;
 
+    qDebug() << "++++";
+    createNewGame();
 }
 void LabyMainWindow::aboutWindowOpen()
 {
     AboutWindow aboutWind;
     aboutWind.exec();
+}
+
+void LabyMainWindow::createNewGame()
+{
+    glModel->fieldModel->createField(glModel->gameSettModel);
+
+    ui->gvLaby->setScene(graphManager->updateGraphicsScene());
+    ui->gvLaby->update();
 }
 //--------------------------------------------------
 

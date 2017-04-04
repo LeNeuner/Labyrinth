@@ -26,6 +26,7 @@ public:
 private slots:
     void settingsWindowOpen();
     void aboutWindowOpen();
+    void createNewGame();
 
     void slotNoImp();
     void testAlert();

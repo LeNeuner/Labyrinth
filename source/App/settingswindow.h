@@ -23,7 +23,14 @@ public:
 
 private slots:
     void on_bAccept_clicked();
-    void on_bCancel_clicked();
+    void on_bCancel_clicked();  
+    void on_cmbGameMode_currentIndexChanged(const QString &arg1);
+
+    void saveParams();
+    void setParamsToModeValues(int width, int height, int exit,
+                               int real, int fake, int arsenal,
+                               int hole, int ammo, int grenade);
+    void setChangeMode(bool isCanChange);
 
 private:
     Ui::SettingsWindow  *ui;

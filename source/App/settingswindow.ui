@@ -25,6 +25,14 @@
      </item>
      <item>
       <widget class="QComboBox" name="cmbGameMode">
+       <property name="currentIndex">
+        <number>1</number>
+       </property>
+       <item>
+        <property name="text">
+         <string>Сложный</string>
+        </property>
+       </item>
        <item>
         <property name="text">
          <string>Стандартный</string>
@@ -372,7 +380,7 @@
      <item>
       <widget class="QPushButton" name="bAccept">
        <property name="text">
-        <string>Применить</string>
+        <string>ОК</string>
        </property>
       </widget>
      </item>

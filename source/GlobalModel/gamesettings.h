@@ -2,9 +2,10 @@
 #define GAMESETTINGS_H
 
 #include <QObject>
+#include "globalModel_global.h"
 #include "settingslimits.h"
 
-class GameSettings : public QObject
+class GLOBALMODELSHARED_EXPORT GameSettings : public QObject
 {
     Q_OBJECT
 public:

@@ -128,12 +128,11 @@ void LabyMainWindow::settingsWindowOpen()
     int winResult;
     winResult = settWind->exec();
 
-    qDebug() << "---";
     // выход, если добавление отменено (несохранено)
     if (winResult == QDialog::Rejected)
         return;
 
-    qDebug() << "++++";
+    // создание нового игрового поля
     createNewGame();
 }
 void LabyMainWindow::aboutWindowOpen()

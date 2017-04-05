@@ -3,7 +3,7 @@
 
 #include <QDebug>
 
-LabyGraphicsScene::LabyGraphicsScene(GlobalModel* model)
+LabyGraphicsScene::LabyGraphicsScene(GlobalModel* model) /*: QObject(), QGraphicsScene()*/
 {
     int big   = DEFAULT_BIG_PICTURE_SIZE;
     int small = DEFAULT_SMALL_PICTURE_SIZE;
@@ -18,10 +18,8 @@ LabyGraphicsScene::LabyGraphicsScene(GlobalModel* model)
     grid->setVerticalSpacing(0);
     grid->setHorizontalSpacing(0);
 
-
     if (model == nullptr)
         qDebug() << "nullptr";
-
 
     QSizeF  cellSize;
     QPixmap *currPixmap = pixmaps->field();
@@ -73,7 +71,10 @@ LabyGraphicsScene::LabyGraphicsScene(GlobalModel* model)
     windowLayout->addItem(grid);
     QGraphicsWidget* gWidget = new QGraphicsWidget();
     gWidget->setLayout(windowLayout);
-    scene->addItem(gWidget);
+
+    // заплатка от бага (съезжает поле)
+//    scene->addItem(gWidget);
+//    scene->update();
 
 }
 
@@ -150,7 +151,15 @@ QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
             if (model->fieldModel->cell[y][x].materialType() == MaterialType::None)
                 currPixmap = pixmaps->field();
             else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Field)
-                currPixmap = pixmaps->flour();
+            {
+                if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
+                    currPixmap = pixmaps->flour_ver();
+                else if (model->fieldModel->cell[y][x].formType() == FormType::Gorizontal)
+                    currPixmap = pixmaps->flour_gor();
+                else
+                    currPixmap = pixmaps->flour();
+            }
+//                currPixmap = pixmaps->flour();
             else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Grass)
                 currPixmap = pixmaps->grass();
             else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Wall)
@@ -173,7 +182,12 @@ QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
             }
             else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Exit)
             {
-                currPixmap = pixmaps->flour();
+                if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
+                    currPixmap = pixmaps->flour_ver();
+                else if (model->fieldModel->cell[y][x].formType() == FormType::Gorizontal)
+                    currPixmap = pixmaps->flour_gor();
+                else
+                    currPixmap = pixmaps->flour();
             }
 
 
@@ -209,6 +223,16 @@ QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
                 item = new BasicRect(testPixmap, cellSize, text);
                 grid->addItem(item, y, x);
             }
+
+            connect(item, &BasicRect::mousePressed,
+                    [this, x, y]()->void
+                    {
+                        if ((x%2 == 0) && (y%2 == 0) && (x>=2) && (x<=20) && (y>=2) && (y<=20))
+                        {
+//                            qDebug() << "X:  " << x << " Y : " << y;
+                            qDebug() << "RX: " << x/2 << " RY: " << y/2;
+                        }
+                    });
         }
     }
 

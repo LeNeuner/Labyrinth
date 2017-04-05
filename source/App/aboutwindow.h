@@ -1,3 +1,8 @@
+/*!
+\file
+\brief Заголовочный файл, содержащий класс AboutWindow -
+класс информативного окна "О программе"
+*/
 #ifndef ABOUTWINDOW_H
 #define ABOUTWINDOW_H
 

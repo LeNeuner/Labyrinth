@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include "globalModel_global.h"
-#include "settingslimits.h"
+#include "constlist.h"
 
 class GLOBALMODELSHARED_EXPORT GameSettings : public QObject
 {

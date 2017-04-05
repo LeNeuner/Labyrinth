@@ -6,6 +6,8 @@ PixmapKeeper::PixmapKeeper(int bigSize, int smallSize) :
 {
     QPixmap *field          = new QPixmap(QLatin1String(":resources/images/field.png"));
     QPixmap *flour          = new QPixmap(QLatin1String(":resources/images/flour.png"));
+    QPixmap *flour_ver      = new QPixmap(QLatin1String(":resources/images/flour_ver.png"));
+    QPixmap *flour_gor      = new QPixmap(QLatin1String(":resources/images/flour_gor.png"));
     QPixmap *grass          = new QPixmap(QLatin1String(":resources/images/grass.png"));
     QPixmap *wall_gor       = new QPixmap(QLatin1String(":resources/images/wall_gor.png"));
     QPixmap *wall_ver       = new QPixmap(QLatin1String(":resources/images/wall_ver.png"));
@@ -22,6 +24,8 @@ PixmapKeeper::PixmapKeeper(int bigSize, int smallSize) :
 
     QPixmap scField         = field->scaled(        big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scFlour         = flour->scaled(        big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+    QPixmap scFlour_ver     = flour_ver->scaled(    small,  big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+    QPixmap scFlour_gor     = flour_gor->scaled(    big,    small,  Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scGrass         = grass->scaled(        big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scWall_gor      = wall_gor->scaled(     big,    small,  Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scWall_ver      = wall_ver->scaled(     small,  big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
@@ -38,6 +42,8 @@ PixmapKeeper::PixmapKeeper(int bigSize, int smallSize) :
 
     m_field                 = new QPixmap(scField);
     m_flour                 = new QPixmap(scFlour);
+    m_flour_ver             = new QPixmap(scFlour_ver);
+    m_flour_gor             = new QPixmap(scFlour_gor);
     m_grass                 = new QPixmap(scGrass);
     m_wall_gor              = new QPixmap(scWall_gor);
     m_wall_ver              = new QPixmap(scWall_ver);
@@ -87,6 +93,8 @@ PixmapKeeper::~PixmapKeeper()
 {
     delete m_field;
     delete m_flour;
+    delete m_flour_ver;
+    delete m_flour_gor;
     delete m_grass;
     delete m_wall_gor;
     delete m_wall_ver;
@@ -120,6 +128,16 @@ QPixmap *PixmapKeeper::field()
 QPixmap *PixmapKeeper::flour()
 {
     return m_flour;
+}
+
+QPixmap *PixmapKeeper::flour_ver()
+{
+    return m_flour_ver;
+}
+
+QPixmap *PixmapKeeper::flour_gor()
+{
+    return m_flour_gor;
 }
 
 QPixmap *PixmapKeeper::grass()

@@ -12,8 +12,9 @@
 #include "basicrect.h"
 #include "pixmapkeeper.h"
 
-class GRAPHICSMODULESHARED_EXPORT LabyGraphicsScene : public QGraphicsScene
+class GRAPHICSMODULESHARED_EXPORT LabyGraphicsScene : /*public QObject,*/ public QGraphicsScene
 {
+//    Q_OBJECT
 public:
     LabyGraphicsScene(GlobalModel* model);
     ~LabyGraphicsScene();
@@ -21,6 +22,9 @@ public:
     QGraphicsScene *graphScene();
 
     QGraphicsScene *updateScene(GlobalModel* model);
+
+signals:
+    void HZ();
 
 private:
     QGraphicsScene          *scene   = nullptr;

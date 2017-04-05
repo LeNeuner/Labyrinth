@@ -40,7 +40,10 @@ HEADERS += \
             cell.h                  \
             field.h                 \
             gamesettings.h          \
-            settingslimits.h
+    position.h \
+    player.h \
+    constlist.h \
+    errorslist.h
 
 SOURCES += \
             globalmodel.cpp         \
@@ -49,5 +52,6 @@ SOURCES += \
 #            hotkeykeeper.cpp
             cell.cpp                \
             field.cpp               \
-            gamesettings.cpp
+            gamesettings.cpp \
+    player.cpp
 

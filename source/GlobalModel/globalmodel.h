@@ -18,8 +18,6 @@ public:
 
     Field*          fieldModel;
     GameSettings*   gameSettModel;
-//    ComMessageKeeper*   messageModel;
-//    HotkeyKeeper*       hotkeysModel;
 };
 
 #endif // GLOBALMODEL_H

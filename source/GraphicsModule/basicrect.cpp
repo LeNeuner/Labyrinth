@@ -4,8 +4,10 @@
 #include <QGraphicsLinearLayout>
 #include <QPainter>
 
+#include <QDebug>
+
 BasicRect::BasicRect(QPixmap *pixmap, QSizeF size, QString text, QGraphicsItem *parent/* = 0*/)
-    : QGraphicsItem(parent), QGraphicsLayoutItem()
+    : QObject(), QGraphicsItem(parent), QGraphicsLayoutItem()
 {
     m_size.setWidth(size.width());
     m_size.setHeight(size.height());
@@ -49,6 +51,7 @@ void BasicRect::paint(QPainter *painter,
     if (m_text != "")
         painter->drawText(frame.center(), m_text);
 }
+
 //! [2]
 
 //! [3]
@@ -83,4 +86,17 @@ QSizeF BasicRect::sizeHint(Qt::SizeHint which, const QSizeF &constraint) const
     }
     return constraint;
 }
-//! [5]
+
+
+void BasicRect::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+//    qDebug() << "XXX";
+    this->setOpacity(0.5);
+    emit mousePressed();
+}
+
+void BasicRect::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+//    qDebug() << "YYY";
+    this->setOpacity(1.0);
+}

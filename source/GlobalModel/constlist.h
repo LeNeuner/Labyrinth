@@ -1,5 +1,5 @@
-#ifndef SETTINGSLIMITS_H
-#define SETTINGSLIMITS_H
+#ifndef CONSTLIST_H
+#define CONSTLIST_H
 
 // GENERAL LIMITS
 
@@ -21,5 +21,5 @@ const int       DEFAULT_HOLE_TYPE_NUM       = 2;
 const int       DEFAULT_BIG_PICTURE_SIZE    = 60;
 const int       DEFAULT_SMALL_PICTURE_SIZE  = 10;
 
-#endif // SETTINGSLIMITS_H
+#endif // CONSTLIST_H
 

@@ -1,3 +1,8 @@
+/*!
+\file
+\brief Заголовочный файл, содержащий класс SettingsWindow -
+класс окна настроек игры
+*/
 #ifndef SETTINGSWINDOW_H
 #define SETTINGSWINDOW_H
 

@@ -2,7 +2,7 @@
 #define PIXMAPKEEPER_H
 
 #include <QPixmap>
-#include "settingslimits.h"
+#include "constlist.h"
 
 class PixmapKeeper
 {
@@ -13,6 +13,8 @@ public:
 
     QPixmap *field();
     QPixmap *flour();
+    QPixmap *flour_ver();
+    QPixmap *flour_gor();
     QPixmap *grass();
     QPixmap *wall_gor();
     QPixmap *wall_ver();
@@ -41,6 +43,8 @@ private:
 
     QPixmap *m_field;
     QPixmap *m_flour;
+    QPixmap *m_flour_ver;
+    QPixmap *m_flour_gor;
     QPixmap *m_grass;
     QPixmap *m_wall_gor;
     QPixmap *m_wall_ver;

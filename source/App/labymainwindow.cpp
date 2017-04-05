@@ -1,11 +1,10 @@
 #include "labymainwindow.h"
 #include "ui_labymainwindow.h"
-#include "cell.h"
-
-#include "aboutwindow.h"
 
 #include <iostream>
 #include <QDebug>
+
+#include "aboutwindow.h"
 
 LabyMainWindow::LabyMainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -95,7 +94,7 @@ void LabyMainWindow::setMainMenu()
 
 
 //--------------------------------------------------
-// установка модели команд \ сообщений
+// установка глобальной модели нстроек
 //--------------------------------------------------
 void LabyMainWindow::setGlobalParamModel()
 {
@@ -103,7 +102,6 @@ void LabyMainWindow::setGlobalParamModel()
     glModel->setDefaults();
     settWind->setGlobalModel(glModel);
     graphManager->setGlobalModel(glModel);
-//    comListWind->setGlobalModel(glModel);
 
     // модель из файла
 //    QString folder = QCoreApplication::applicationDirPath();
@@ -154,7 +152,7 @@ void LabyMainWindow::createNewGame()
 //--------------------------------------------------
 // служебные слоты
 //--------------------------------------------------
-// слот не реализован
+// слот заглушка
 void LabyMainWindow::slotNoImp()
 {
     QMessageBox::information(0, "Message", "Not implemented");
@@ -170,7 +168,7 @@ void LabyMainWindow::testAlert()
 
 
 
-
+// временная генерация (убрать)
 void LabyMainWindow::on_bGenerate_clicked()
 {
     glModel->fieldModel->createField(glModel->gameSettModel);

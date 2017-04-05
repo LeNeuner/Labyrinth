@@ -4,15 +4,11 @@
 #include <QObject>
 
 #include "globalModel_global.h"
+#include "constlist.h"
 #include "gamesettings.h"
 #include "cell.h"
-#include "settingslimits.h"
+#include "position.h"
 
-typedef struct
-{
-    int y;
-    int x;
-} Position;
 
 class GLOBALMODELSHARED_EXPORT Field : public QObject
 {
@@ -50,6 +46,10 @@ private:
     int xNum;
     int yNum;
 
+    //--------------------------------------------------
+    // ФУНКЦИИ ДЛЯ ГЕНЕРАЦИИ ПОЛЯ
+    //--------------------------------------------------
+    // массив используемых/занятых ячеек
     std::vector<Position> usedPos;
 
     // тестирование достаточного количества проходов в лабиринте
@@ -79,6 +79,7 @@ private:
     void setExits(GameSettings *settings);
     // определение положения ям
     void setHoles(GameSettings *settings);
+    //--------------------------------------------------
 };
 
 #endif // FIELD_H

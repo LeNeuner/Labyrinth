@@ -50,6 +50,13 @@ void BasicRect::paint(QPainter *painter,
 
     if (m_text != "")
         painter->drawText(frame.center(), m_text);
+
+    if (needPlayerDraw)
+    {
+        painter->setBrush(color);
+        painter->setPen(color);
+        painter->drawEllipse(frame.center(), 5, 5);
+    }
 }
 
 //! [2]
@@ -99,4 +106,16 @@ void BasicRect::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
 //    qDebug() << "YYY";
     this->setOpacity(1.0);
+}
+
+
+
+void BasicRect::addPlayer(QColor clr)
+{
+    color = clr;
+    needPlayerDraw = true;
+}
+void BasicRect::delPlayer()
+{
+    needPlayerDraw = false;
 }

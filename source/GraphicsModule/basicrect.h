@@ -20,8 +20,13 @@ public:
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0) Q_DECL_OVERRIDE;
 
+    // обработка событий нажатия клавишей мыши
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+
+    // нарисовать/убрать игрока
+    void addPlayer(QColor clr);
+    void delPlayer();
 
 signals:
     void mousePressed();
@@ -30,6 +35,9 @@ private:
     QPixmap *m_pix = nullptr;
     QSizeF  m_size;
     QString m_text = "";
+
+    bool    needPlayerDraw = false;
+    QColor  color = Qt::red;
 };
 
 #endif // BASICRECT_H

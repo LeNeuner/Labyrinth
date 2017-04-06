@@ -206,12 +206,12 @@ QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
                 currPixmap = pixmaps->hole_type2();
 
 
-            if ((model->fieldModel->cell[y][x].testVisitedNum != 0) &&
-                (model->fieldModel->cell[y][x].formType() == FormType::Square) &&
-                (model->fieldModel->cell[y][x].objectType() != ObjectType::Arsenal))
-            {
-                text = QString::number(model->fieldModel->cell[y][x].testVisitedNum);
-            }
+//            if ((model->fieldModel->cell[y][x].testVisitedNum != 0) &&
+//                (model->fieldModel->cell[y][x].formType() == FormType::Square) &&
+//                (model->fieldModel->cell[y][x].objectType() != ObjectType::Arsenal))
+//            {
+//                text = QString::number(model->fieldModel->cell[y][x].testVisitedNum);
+//            }
 
 
             item = new BasicRect(currPixmap, cellSize, text);
@@ -225,12 +225,13 @@ QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
             }
 
             connect(item, &BasicRect::mousePressed,
-                    [this, x, y]()->void
+                    [this, x, y, item]()->void
                     {
                         if ((x%2 == 0) && (y%2 == 0) && (x>=2) && (x<=20) && (y>=2) && (y<=20))
                         {
 //                            qDebug() << "X:  " << x << " Y : " << y;
                             qDebug() << "RX: " << x/2 << " RY: " << y/2;
+                            item->addPlayer(Qt::red);
                         }
                     });
         }

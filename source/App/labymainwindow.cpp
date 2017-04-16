@@ -163,6 +163,14 @@ void LabyMainWindow::testAlert()
 {
     QApplication::alert(this, 10000);
 }
+
+// key test
+void LabyMainWindow::keyPressEvent(QKeyEvent *event)
+{
+    qDebug() << "key pressed: " << event->key();
+    qDebug() << QString("You typed %1").arg(event->key());
+}
+
 //--------------------------------------------------
 
 

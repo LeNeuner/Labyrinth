@@ -21,6 +21,7 @@ PixmapKeeper::PixmapKeeper(int bigSize, int smallSize) :
     QPixmap *arsenal        = new QPixmap(QLatin1String(":resources/images/arsenal.png"));
     QPixmap *hole_type1     = new QPixmap(QLatin1String(":resources/images/hole_type1.png"));
     QPixmap *hole_type2     = new QPixmap(QLatin1String(":resources/images/hole_type2.png"));
+    QPixmap *hole_closed    = new QPixmap(QLatin1String(":resources/images/hole_closed.png"));
 
     QPixmap scField         = field->scaled(        big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scFlour         = flour->scaled(        big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
@@ -39,6 +40,7 @@ PixmapKeeper::PixmapKeeper(int bigSize, int smallSize) :
     QPixmap scArsenal       = arsenal->scaled(      big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scHoleType1     = hole_type1->scaled(   big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scHoleType2     = hole_type2->scaled(   big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+    QPixmap scHoleClosed    = hole_closed->scaled(  big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
 
     m_field                 = new QPixmap(scField);
     m_flour                 = new QPixmap(scFlour);
@@ -57,6 +59,7 @@ PixmapKeeper::PixmapKeeper(int bigSize, int smallSize) :
     m_arsenal               = new QPixmap(scArsenal);
     m_hole_type1            = new QPixmap(scHoleType1);
     m_hole_type2            = new QPixmap(scHoleType2);
+    m_hole_closed           = new QPixmap(scHoleClosed);
 
     QMatrix rm;
     rm.rotate(180);
@@ -109,6 +112,7 @@ PixmapKeeper::~PixmapKeeper()
     delete m_arsenal;
     delete m_hole_type1;
     delete m_hole_type2;
+    delete m_hole_closed;
 
     delete m_t1_gor;
     delete m_t1_ver;
@@ -209,6 +213,12 @@ QPixmap *PixmapKeeper::hole_type2()
 {
     return m_hole_type2;
 }
+
+QPixmap *PixmapKeeper::hole_closed()
+{
+    return m_hole_closed;
+}
+
 
 QPixmap *PixmapKeeper::test_ver()
 {

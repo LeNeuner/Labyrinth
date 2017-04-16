@@ -130,6 +130,8 @@ QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
     QSizeF  cellSize;
     QPixmap *currPixmap = pixmaps->field();
     BasicRect *item = new BasicRect(pixmaps->field(), QSizeF(small, small));
+    // ссылка на предыдущее поле
+    BasicRect *lastItem = nullptr;
     for (int y = 0; y < model->fieldModel->getFullHeight(); y++)
     {
         for (int x = 0; x < model->fieldModel->getFullWidth(); x++)
@@ -199,11 +201,17 @@ QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
                 currPixmap = pixmaps->arsenal();
             else if ((model->fieldModel->cell[y][x].holeType() == HoleType::TypeI) ||
                 (model->fieldModel->cell[y][x].holeType() == HoleType::TypeII))
-                currPixmap = pixmaps->hole_type1();
+            {
+                currPixmap = pixmaps->hole_closed();
+//                text = "I-II";
+            }
             else if ((model->fieldModel->cell[y][x].holeType() == HoleType::TypeA) ||
                 (model->fieldModel->cell[y][x].holeType() == HoleType::TypeB) ||
                 (model->fieldModel->cell[y][x].holeType() == HoleType::TypeC))
-                currPixmap = pixmaps->hole_type2();
+            {
+                currPixmap = pixmaps->hole_closed();
+//                text = "ABC";
+            }
 
 
 //            if ((model->fieldModel->cell[y][x].testVisitedNum != 0) &&
@@ -225,13 +233,21 @@ QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
             }
 
             connect(item, &BasicRect::mousePressed,
-                    [this, x, y, item]()->void
+                    [this, x, y, item, lastItem]()mutable ->void
                     {
                         if ((x%2 == 0) && (y%2 == 0) && (x>=2) && (x<=20) && (y>=2) && (y<=20))
                         {
 //                            qDebug() << "X:  " << x << " Y : " << y;
                             qDebug() << "RX: " << x/2 << " RY: " << y/2;
                             item->addPlayer(Qt::red);
+
+//                            if (item != lastItem)
+//                            {
+//                                if (lastItem)
+//                                    lastItem->delPlayer();
+
+//                                lastItem = item;
+//                            }
                         }
                     });
         }

@@ -45,6 +45,9 @@ private slots:
     // временная кнопка удобной генерации поля
     void on_bGenerate_clicked();
 
+    //+
+    void keyPressEvent(QKeyEvent *event);
+
 private:
     Ui::LabyMainWindow  *ui;
     GlobalModel         *glModel;           // глобальная модель параметров

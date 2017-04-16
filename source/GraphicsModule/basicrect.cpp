@@ -109,7 +109,6 @@ void BasicRect::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 }
 
 
-
 void BasicRect::addPlayer(QColor clr)
 {
     color = clr;
@@ -118,4 +117,5 @@ void BasicRect::addPlayer(QColor clr)
 void BasicRect::delPlayer()
 {
     needPlayerDraw = false;
+//    color = Qt::transparent;
 }

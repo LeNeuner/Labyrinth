@@ -12,15 +12,15 @@ enum class ObjectState : unsigned int
 };
 
 // тип ямы
-enum class HoleType : unsigned int
-{
-    None,
-    TypeA,
-    TypeB,
-    TypeC,
-    TypeI,
-    TypeII
-};
+//enum class HoleType : unsigned int
+//{
+//    None,
+//    TypeA,
+//    TypeB,
+//    TypeC,
+//    TypeI,
+//    TypeII
+//};
 
 // тип формы ячейки
 enum class FormType : unsigned int
@@ -50,7 +50,11 @@ enum class ObjectType : unsigned int
     RealTreasure,
     FakeTreasure,
     Arsenal,
-    Hole
+    HoleTypeA,
+    HoleTypeB,
+    HoleTypeC,
+    HoleTypeI,
+    HoleTypeII
 };
 
 
@@ -60,10 +64,10 @@ class GLOBALMODELSHARED_EXPORT Cell
 public:
     Cell();
     Cell(FormType fType, MaterialType mType, ObjectType oType,
-         ObjectState oState, HoleType hType);
+         ObjectState oState);
 
     void setCellTypes(FormType fType, MaterialType mType, ObjectType oType,
-                      ObjectState oState, HoleType hType);
+                      ObjectState oState);
 
     void setFormType(FormType type);
     FormType formType();
@@ -77,8 +81,6 @@ public:
     void setObjectState(ObjectState state);
     ObjectState objectState();
 
-    void setHoleType(HoleType type);
-    HoleType holeType();
 
     void setBlocked(bool blocked);
     bool blocked();
@@ -93,7 +95,6 @@ private:
     MaterialType m_materialType;
     ObjectType   m_objectType;
     ObjectState  m_objectState;
-    HoleType     m_holeType;
 
     bool testAlgBlocked = true;
     bool testAlgVisited = false;

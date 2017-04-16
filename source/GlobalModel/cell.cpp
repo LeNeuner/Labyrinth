@@ -4,22 +4,20 @@ Cell::Cell()
 {
 }
 
-Cell::Cell(FormType fType, MaterialType mType, ObjectType oType, ObjectState oState, HoleType hType)
+Cell::Cell(FormType fType, MaterialType mType, ObjectType oType, ObjectState oState)
 {
     m_formType      = fType;
     m_materialType  = mType;
     m_objectType    = oType;
     m_objectState   = oState;
-    m_holeType      = hType;
 }
 
-void Cell::setCellTypes(FormType fType, MaterialType mType, ObjectType oType, ObjectState oState, HoleType hType)
+void Cell::setCellTypes(FormType fType, MaterialType mType, ObjectType oType, ObjectState oState)
 {
     m_formType      = fType;
     m_materialType  = mType;
     m_objectType    = oType;
     m_objectState   = oState;
-    m_holeType      = hType;
 }
 
 void Cell::setFormType(FormType type)
@@ -58,14 +56,7 @@ ObjectState Cell::objectState()
     return m_objectState;
 }
 
-void Cell::setHoleType(HoleType type)
-{
-    m_holeType = type;
-}
-HoleType Cell::holeType()
-{
-    return m_holeType;
-}
+
 
 void Cell::setBlocked(bool blocked)
 {

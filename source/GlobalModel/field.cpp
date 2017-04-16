@@ -43,7 +43,7 @@ void Field::setDefaults()
         for (int x = 0; x < xNum; x+=2)
         {
             cell[y][x].setCellTypes(FormType::Square, MaterialType::None,
-                                    ObjectType::None, ObjectState::None, HoleType::None);
+                                    ObjectType::None, ObjectState::None);
         }
     }
     // vertical cells
@@ -52,7 +52,7 @@ void Field::setDefaults()
         for (int x = 1; x < xNum-1; x+=2)
         {
             cell[y][x].setCellTypes(FormType::Vertical, MaterialType::None,
-                                    ObjectType::None, ObjectState::None, HoleType::None);
+                                    ObjectType::None, ObjectState::None);
         }
     }
     // gorizontal cells
@@ -61,7 +61,7 @@ void Field::setDefaults()
         for (int x = 0; x < xNum; x+=2)
         {
             cell[y][x].setCellTypes(FormType::Gorizontal, MaterialType::None,
-                                    ObjectType::None, ObjectState::None, HoleType::None);
+                                    ObjectType::None, ObjectState::None);
         }
     }
     // pillar cells
@@ -70,7 +70,7 @@ void Field::setDefaults()
         for (int x = 1; x < xNum-1; x+=2)
         {
             cell[y][x].setCellTypes(FormType::Pillar, MaterialType::None,
-                                    ObjectType::None, ObjectState::None, HoleType::None);
+                                    ObjectType::None, ObjectState::None);
         }
     }
 }
@@ -240,44 +240,44 @@ void Field::setBasicFields()
     {
         int y = 0;
         cell[y][x].setCellTypes(FormType::Square, MaterialType::Grass,
-                                ObjectType::None, ObjectState::None, HoleType::None);
+                                ObjectType::None, ObjectState::None);
 
         y = yNum-1;
         cell[y][x].setCellTypes(FormType::Square, MaterialType::Grass,
-                                ObjectType::None, ObjectState::None, HoleType::None);
+                                ObjectType::None, ObjectState::None);
     }
     // out grass square (left & right)
     for (int y = 2; y < yNum-2; y+=2)
     {
         int x = 0;
         cell[y][x].setCellTypes(FormType::Square, MaterialType::Grass,
-                                ObjectType::None, ObjectState::None, HoleType::None);
+                                ObjectType::None, ObjectState::None);
 
         x = xNum-1;
         cell[y][x].setCellTypes(FormType::Square, MaterialType::Grass,
-                                ObjectType::None, ObjectState::None, HoleType::None);
+                                ObjectType::None, ObjectState::None);
     }
     // out grass ver (top & bottom)
     for (int x = 1; x < xNum-1; x+=2)
     {
         int y = 0;
         cell[y][x].setCellTypes(FormType::Vertical, MaterialType::Grass,
-                                ObjectType::None, ObjectState::None, HoleType::None);
+                                ObjectType::None, ObjectState::None);
 
         y = yNum-1;
         cell[y][x].setCellTypes(FormType::Vertical, MaterialType::Grass,
-                                ObjectType::None, ObjectState::None, HoleType::None);
+                                ObjectType::None, ObjectState::None);
     }
     // out grass gor (left & right)
     for (int y = 1; y < yNum-1; y+=2)
     {
         int x = 0;
         cell[y][x].setCellTypes(FormType::Gorizontal, MaterialType::Grass,
-                                ObjectType::None, ObjectState::None, HoleType::None);
+                                ObjectType::None, ObjectState::None);
 
         x = xNum-1;
         cell[y][x].setCellTypes(FormType::Gorizontal, MaterialType::Grass,
-                                ObjectType::None, ObjectState::None, HoleType::None);
+                                ObjectType::None, ObjectState::None);
     }
     //--------------------------------------------------------------------------------
     // concrete (top & bottom)
@@ -285,43 +285,43 @@ void Field::setBasicFields()
     {
         int y = 1;
         cell[y][x].setCellTypes(FormType::Gorizontal, MaterialType::Concrete,
-                                ObjectType::None, ObjectState::None, HoleType::None);
+                                ObjectType::None, ObjectState::None);
         y = yNum-2;
         cell[y][x].setCellTypes(FormType::Gorizontal, MaterialType::Concrete,
-                                ObjectType::None, ObjectState::None, HoleType::None);
+                                ObjectType::None, ObjectState::None);
     }
     // concrete (left & right)
     for (int y = 2; y < yNum-2; y+=2)
     {
         int x = 1;
         cell[y][x].setCellTypes(FormType::Vertical, MaterialType::Concrete,
-                                ObjectType::None, ObjectState::None, HoleType::None);
+                                ObjectType::None, ObjectState::None);
 
         x = xNum-2;
         cell[y][x].setCellTypes(FormType::Vertical, MaterialType::Concrete,
-                                ObjectType::None, ObjectState::None, HoleType::None);
+                                ObjectType::None, ObjectState::None);
     }
     // concrete pillar (top & bottom)
     for (int x = 1; x < xNum-1; x+=2)
     {
         int y = 1;
         cell[y][x].setCellTypes(FormType::Pillar, MaterialType::Concrete,
-                                ObjectType::None, ObjectState::None, HoleType::None);
+                                ObjectType::None, ObjectState::None);
 
         y = yNum-2;
         cell[y][x].setCellTypes(FormType::Pillar, MaterialType::Concrete,
-                                ObjectType::None, ObjectState::None, HoleType::None);
+                                ObjectType::None, ObjectState::None);
     }
     // concrete pillar (left & right)
     for (int y = 3; y < yNum-3; y+=2)
     {
         int x = 1;
         cell[y][x].setCellTypes(FormType::Pillar, MaterialType::Concrete,
-                                ObjectType::None, ObjectState::None, HoleType::None);
+                                ObjectType::None, ObjectState::None);
 
         x = xNum-2;
         cell[y][x].setCellTypes(FormType::Pillar, MaterialType::Concrete,
-                                ObjectType::None, ObjectState::None, HoleType::None);
+                                ObjectType::None, ObjectState::None);
     }
     // main field
     for (int y = 2; y <= yNum-3; y+=2)
@@ -329,7 +329,7 @@ void Field::setBasicFields()
         for (int x = 2; x <= xNum-3; x+=2)
         {
             cell[y][x].setCellTypes(FormType::Square, MaterialType::Field,
-                                    ObjectType::None, ObjectState::None, HoleType::None);
+                                    ObjectType::None, ObjectState::None);
 
             cell[y][x].setBlocked(false);
         }
@@ -340,7 +340,7 @@ void Field::setBasicFields()
         for (int x = 2; x <= xNum-3; x+=2)
         {
             cell[y][x].setCellTypes(FormType::Gorizontal, MaterialType::Field,
-                                    ObjectType::None, ObjectState::None, HoleType::None);
+                                    ObjectType::None, ObjectState::None);
             cell[y][x].setBlocked(false);
         }
     }
@@ -350,7 +350,7 @@ void Field::setBasicFields()
         for (int x = 3; x < xNum-3; x+=2)
         {
             cell[y][x].setCellTypes(FormType::Vertical, MaterialType::Field,
-                                    ObjectType::None, ObjectState::None, HoleType::None);
+                                    ObjectType::None, ObjectState::None);
             cell[y][x].setBlocked(false);
         }
     }
@@ -360,7 +360,7 @@ void Field::setBasicFields()
         for (int x = 3; x < xNum-3; x+=2)
         {
             cell[y][x].setCellTypes(FormType::Pillar, MaterialType::Wall,
-                                    ObjectType::None, ObjectState::None, HoleType::None);
+                                    ObjectType::None, ObjectState::None);
         }
     }
     //--------------------------------------------------------------------------------
@@ -380,7 +380,6 @@ void Field::setRealTreasures(GameSettings *settings, int &blockedCellsNum)
     usedPos.push_back(currPos);
     realTreasureNum++;
     blockedCellsNum++;
-//    qDebug() << "real:  y = " << currPos.y << "    x = " << currPos.x;
 
     while (realTreasureNum != settings->realTreasureNum())
     {
@@ -402,7 +401,6 @@ void Field::setRealTreasures(GameSettings *settings, int &blockedCellsNum)
             {
                 cell[pos.y][pos.x].setBlocked(true);
                 blockedCellsNum++;
-//                qDebug() << " real: y = " << pos.y << "    x = " << pos.x;
 
                 // проверка доступности остальных ячеек полей
                 if (checkFreeAccess(settings, blockedCellsNum))
@@ -445,7 +443,6 @@ void Field::setFakeTreasures(GameSettings *settings, int &blockedCellsNum)
             {
                 cell[pos.y][pos.x].setBlocked(true);
                 blockedCellsNum++;
-//                qDebug() << "y = " << pos.y << "    x = " << pos.x;
 
                 // проверка доступности остальных ячеек полей
                 if (checkFreeAccess(settings, blockedCellsNum))
@@ -509,7 +506,6 @@ void Field::setArsenals(GameSettings *settings, int &blockedCellsNum)
         Position pos;
         pos.y = (rand() % settings->fieldHeight() + 1) * 2;
         pos.x = (rand() % settings->fieldWidth() + 1) * 2;
-//        qDebug() << "Y = " << pos.y << "    X = " << pos.x;
 
         for (int i = 0; i < (int)usedPos.size(); i++)
         {
@@ -524,7 +520,6 @@ void Field::setArsenals(GameSettings *settings, int &blockedCellsNum)
             {
                 cell[pos.y][pos.x].setBlocked(true);
                 blockedCellsNum++;
-//                qDebug() << "y = " << pos.y << "    x = " << pos.x;
 
                 // проверка доступности остальных ячеек полей
                 if (checkFreeAccess(settings, blockedCellsNum))
@@ -945,15 +940,15 @@ void Field::setHoles(GameSettings *settings)
         if ((cell[y][x].objectType() != ObjectType::RealTreasure) &&
             (cell[y][x].objectType() != ObjectType::FakeTreasure) &&
             (cell[y][x].objectType() != ObjectType::Arsenal) &&
-            (cell[y][x].objectType() != ObjectType::Hole))
+            (cell[y][x].objectType() != ObjectType::HoleTypeI) &&
+            (cell[y][x].objectType() != ObjectType::HoleTypeII))
         {
-            cell[y][x].setObjectType(ObjectType::Hole);
             holeNum++;
 
             if (holeNum == 1)
-                cell[y][x].setHoleType(HoleType::TypeI);
+                cell[y][x].setObjectType(ObjectType::HoleTypeI);
             else
-                cell[y][x].setHoleType(HoleType::TypeII);
+                cell[y][x].setObjectType(ObjectType::HoleTypeII);
         }
     }
 
@@ -968,17 +963,20 @@ void Field::setHoles(GameSettings *settings)
             if ((cell[y][x].objectType() != ObjectType::RealTreasure) &&
                 (cell[y][x].objectType() != ObjectType::FakeTreasure) &&
                 (cell[y][x].objectType() != ObjectType::Arsenal) &&
-                (cell[y][x].objectType() != ObjectType::Hole))
+                (cell[y][x].objectType() != ObjectType::HoleTypeI) &&
+                (cell[y][x].objectType() != ObjectType::HoleTypeII) &&
+                (cell[y][x].objectType() != ObjectType::HoleTypeA) &&
+                (cell[y][x].objectType() != ObjectType::HoleTypeB) &&
+                (cell[y][x].objectType() != ObjectType::HoleTypeC))
             {
-                cell[y][x].setObjectType(ObjectType::Hole);
                 holeNum++;
 
                 if (holeNum == 1)
-                    cell[y][x].setHoleType(HoleType::TypeA);
+                    cell[y][x].setObjectType(ObjectType::HoleTypeA);
                 else if (holeNum == 2)
-                    cell[y][x].setHoleType(HoleType::TypeB);
+                    cell[y][x].setObjectType(ObjectType::HoleTypeB);
                 else
-                    cell[y][x].setHoleType(HoleType::TypeC);
+                    cell[y][x].setObjectType(ObjectType::HoleTypeC);
             }
         }
     }

@@ -75,7 +75,6 @@ LabyGraphicsScene::LabyGraphicsScene(GlobalModel* model) /*: QObject(), QGraphic
     // заплатка от бага (съезжает поле)
 //    scene->addItem(gWidget);
 //    scene->update();
-
 }
 
 LabyGraphicsScene::~LabyGraphicsScene()
@@ -199,15 +198,15 @@ QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
                 currPixmap = pixmaps->treasure();
             else if (model->fieldModel->cell[y][x].objectType() == ObjectType::Arsenal)
                 currPixmap = pixmaps->arsenal();
-            else if ((model->fieldModel->cell[y][x].holeType() == HoleType::TypeI) ||
-                (model->fieldModel->cell[y][x].holeType() == HoleType::TypeII))
+            else if ((model->fieldModel->cell[y][x].objectType() == ObjectType::HoleTypeI) ||
+                (model->fieldModel->cell[y][x].objectType() == ObjectType::HoleTypeII))
             {
                 currPixmap = pixmaps->hole_closed();
 //                text = "I-II";
             }
-            else if ((model->fieldModel->cell[y][x].holeType() == HoleType::TypeA) ||
-                (model->fieldModel->cell[y][x].holeType() == HoleType::TypeB) ||
-                (model->fieldModel->cell[y][x].holeType() == HoleType::TypeC))
+            else if ((model->fieldModel->cell[y][x].objectType() == ObjectType::HoleTypeA) ||
+                (model->fieldModel->cell[y][x].objectType() == ObjectType::HoleTypeB) ||
+                (model->fieldModel->cell[y][x].objectType() == ObjectType::HoleTypeC))
             {
                 currPixmap = pixmaps->hole_closed();
 //                text = "ABC";

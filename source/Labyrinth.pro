@@ -10,16 +10,12 @@ TEMPLATE = subdirs
 CONFIG   += ordered
 
 SUBDIRS = \
-            GlobalModel       \
-#            SettingsModule    \
-            GraphicsModule    \
+            GlobalModel     \
+            EngineModule    \
+            GraphicsModule  \
             App
 
-App.depends = GlobalModel GraphicsModule
-GraphicsModule.depends = GlobalModel
-
-#App.depends = GlobalModel SettingsModule GraphicsModule
-#GraphicsModule.depends = SettingsModule GlobalModel
-#settingsModule.depends = GlobalModel
+App.depends = GlobalModel EngineModule GraphicsModule
+GraphicsModule.depends = GlobalModel EngineModule
 
 QMAKE_CXXFLAGS    += -std=c++11 -Wall -Wextra -g

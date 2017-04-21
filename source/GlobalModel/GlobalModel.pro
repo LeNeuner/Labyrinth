@@ -31,27 +31,22 @@ CONFIG (debug, debug|release) {
 HEADERS += \
             globalModel_global.h    \
             globalmodel.h           \
-#            connkeeper.h            \
-#            commessagekeeper.h      \
-#            hotkeykeeper.h          \
-#            settingslimits.h        \
-#            hotkey.h                \
-#            message.h
             cell.h                  \
             field.h                 \
             gamesettings.h          \
-    position.h \
-    player.h \
-    constlist.h \
-    errorslist.h
+            position.h              \
+            player.h                \
+            constlist.h             \
+            errorslist.h            \
+            playercellinfo.h        \
+            playerfieldinfo.h
 
 SOURCES += \
             globalmodel.cpp         \
-#            connkeeper.cpp          \
-#            commessagekeeper.cpp    \
-#            hotkeykeeper.cpp
             cell.cpp                \
             field.cpp               \
-            gamesettings.cpp \
-    player.cpp
+            gamesettings.cpp        \
+            player.cpp              \
+            playercellinfo.cpp      \
+            playerfieldinfo.cpp
 

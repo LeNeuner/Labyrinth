@@ -11,17 +11,6 @@ enum class ObjectState : unsigned int
     Looted
 };
 
-// тип ямы
-//enum class HoleType : unsigned int
-//{
-//    None,
-//    TypeA,
-//    TypeB,
-//    TypeC,
-//    TypeI,
-//    TypeII
-//};
-
 // тип формы ячейки
 enum class FormType : unsigned int
 {

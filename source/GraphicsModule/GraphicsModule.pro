@@ -44,8 +44,7 @@ HEADERS  += graphicsmanager.h       \
             labygraphicsscene.h     \
             graphicsmodule_global.h \
             basicrect.h             \
-            pixmapkeeper.h \
-    labygraphicsscene.h
+            pixmapkeeper.h
 
 RESOURCES += labyresources.qrc
 

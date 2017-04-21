@@ -8,6 +8,7 @@
 #define PLAYER_H
 
 #include <QObject>
+#include <QColor>
 #include "position.h"
 #include "playerfieldinfo.h"
 
@@ -28,16 +29,21 @@ enum class PlayerControl : unsigned int
 class Player
 {
 public:
-    Player();
+    Player(int id, const QString &name, QColor color, Position pos);
+    ~Player();
 
+    // установка/получение ID
     void setID(int id);
     int ID();
 
 private:
-    int             m_ID    = -1;
-    const QString   m_name  = QString("Player");
-    PlayerState     m_playerState;
-    PlayerControl   m_playerControl;
+    int             m_ID            = -1;
+    const QString   m_name          = QString("Player");
+    QColor          m_playerColor   = Qt::black;
+    PlayerState     m_playerState   = PlayerState::Healthy;
+    PlayerControl   m_playerControl = PlayerControl::Human;
+    Position        m_playerPos;
+    PlayerFieldInfo *m_playerField;
 //    Position currPos();
 };
 

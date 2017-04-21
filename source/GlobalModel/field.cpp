@@ -19,6 +19,12 @@ Field::Field(QObject *parent) :
 
 Field::~Field()
 {
+    // очистка предыдущего поля
+    if (cell != nullptr)
+    {
+        delete cell;
+        cell = nullptr;
+    }
 }
 
 //--------------------------------------------------------------------------------

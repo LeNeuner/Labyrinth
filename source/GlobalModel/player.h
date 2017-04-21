@@ -9,6 +9,7 @@
 
 #include <QObject>
 #include "position.h"
+#include "playerfieldinfo.h"
 
 // состояние игрока
 enum class PlayerState : unsigned int

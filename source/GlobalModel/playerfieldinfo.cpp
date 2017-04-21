@@ -19,6 +19,12 @@ PlayerFieldInfo::PlayerFieldInfo(QObject *parent) :
 
 PlayerFieldInfo::~PlayerFieldInfo()
 {
+    // очистка предыдущего поля
+    if (playerCell != nullptr)
+    {
+        delete playerCell;
+        playerCell = nullptr;
+    }
 }
 
 //--------------------------------------------------------------------------------

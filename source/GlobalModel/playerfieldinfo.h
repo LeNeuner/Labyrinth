@@ -31,8 +31,8 @@ public:
     //     return yNum;
     // }
     //
-    // // массив ячеек игрового поля
-    // Cell **cell;
+    // массив ячеек поля (как его видит игрок)
+    PlayerCellInfo **playerCell;
 
 private:
 

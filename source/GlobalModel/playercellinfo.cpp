@@ -2,15 +2,13 @@
 
 PlayerCellInfo::PlayerCellInfo()
 {
+    m_cellState = CellState::Closed;
 }
 
-//Cell::Cell(FormType fType, MaterialType mType, ObjectType oType, ObjectState oState)
-//{
-//    m_formType      = fType;
-//    m_materialType  = mType;
-//    m_objectType    = oType;
-//    m_objectState   = oState;
-//}
+PlayerCellInfo::PlayerCellInfo(CellState cState)
+{
+    m_cellState     = cState;
+}
 
 //void Cell::setCellTypes(FormType fType, MaterialType mType, ObjectType oType, ObjectState oState)
 //{
@@ -47,14 +45,14 @@ PlayerCellInfo::PlayerCellInfo()
 //    return m_objectType;
 //}
 
-//void Cell::setObjectState(ObjectState state)
-//{
-//    m_objectState = state;
-//}
-//ObjectState Cell::objectState()
-//{
-//    return m_objectState;
-//}
+void PlayerCellInfo::setCellState(CellState state)
+{
+    m_cellState = state;
+}
+CellState PlayerCellInfo::cellState()
+{
+    return m_cellState;
+}
 
 
 

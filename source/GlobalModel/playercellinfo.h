@@ -3,57 +3,19 @@
 
 #include "globalModel_global.h"
 
-//// состояние объекта
-//enum class ObjectState : unsigned int
-//{
-//    None,
-//    Whole,
-//    Looted
-//};
-
-//// тип формы ячейки
-//enum class FormType : unsigned int
-//{
-//    Gorizontal,
-//    Vertical,
-//    Pillar,
-//    Square
-//};
-
-//// тип материала
-//enum class MaterialType : unsigned int
-//{
-//    None,
-//    Field,
-//    Grass,
-//    Wall,
-//    Concrete,
-//    WallDest,
-//    Exit
-//};
-
-//// тип объекта
-//enum class ObjectType : unsigned int
-//{
-//    None,
-//    RealTreasure,
-//    FakeTreasure,
-//    Arsenal,
-//    HoleTypeA,
-//    HoleTypeB,
-//    HoleTypeC,
-//    HoleTypeI,
-//    HoleTypeII
-//};
-
+// видимость (открытость) ячейки для игрока
+enum class CellState : unsigned int
+{
+    Opened,
+    Closed
+};
 
 
 class GLOBALMODELSHARED_EXPORT PlayerCellInfo
 {
 public:
     PlayerCellInfo();
-//    PlayerCellInfo(FormType fType, MaterialType mType, ObjectType oType,
-//         ObjectState oState);
+    PlayerCellInfo(CellState cState);
 
 //    void setCellTypes(FormType fType, MaterialType mType, ObjectType oType,
 //                      ObjectState oState);
@@ -67,8 +29,8 @@ public:
 //    void setObjectType(ObjectType type);
 //    ObjectType objectType();
 
-//    void setObjectState(ObjectState state);
-//    ObjectState objectState();
+    void setCellState(CellState state);
+    CellState cellState();
 
 
 //    void setBlocked(bool blocked);
@@ -80,7 +42,7 @@ public:
 
 private:
 
-//    FormType     m_formType;
+    CellState     m_cellState;
 //    MaterialType m_materialType;
 //    ObjectType   m_objectType;
 //    ObjectState  m_objectState;

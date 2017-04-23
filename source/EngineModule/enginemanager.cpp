@@ -17,3 +17,19 @@ EngineManager::EngineManager(QObject *parent) :
 EngineManager::~EngineManager()
 {
 }
+
+//--------------------------------------------------
+// инициализация новой игры
+bool EngineManager::newGameInitialization()
+{
+    // FIELD GENERATION
+
+    // PLAYER CREATION
+
+    return true;
+}
+
+
+
+
+

@@ -23,6 +23,9 @@ LabyMainWindow::LabyMainWindow(QWidget *parent) :
 
     // графическое построение поля
     ui->gvLaby->setScene(graphManager->createGraphicsScene());
+
+    // графическое построение поля игрока
+    ui->gvSecond->setScene(graphManager->createGraphicsScene());
 }
 
 LabyMainWindow::~LabyMainWindow()

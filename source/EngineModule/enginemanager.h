@@ -19,6 +19,9 @@ public:
         glModel = model;
     }
 
+    // инициализация новой игры
+    bool newGameInitialization();
+
 private:
     GlobalModel         *glModel = nullptr;
 };

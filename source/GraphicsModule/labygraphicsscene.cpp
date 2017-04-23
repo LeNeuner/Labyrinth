@@ -11,6 +11,10 @@ LabyGraphicsScene::LabyGraphicsScene(GlobalModel* model) /*: QObject(), QGraphic
     pixmaps = new PixmapKeeper(big, small);
     scene = new QGraphicsScene(this);
 
+//    QPixmap *bGrass  = new QPixmap(QLatin1String(":resources/images/bigGrass.jpg"));
+//    QPixmap bigGrass = bGrass->scaled(1000, 600, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+//    scene->setBackgroundBrush(Qt::green);
+
     BasicRect *item = new BasicRect(pixmaps->field(), QSizeF(small, small));
 
     QGraphicsLinearLayout *windowLayout = new QGraphicsLinearLayout(Qt::Vertical);
@@ -73,8 +77,8 @@ LabyGraphicsScene::LabyGraphicsScene(GlobalModel* model) /*: QObject(), QGraphic
     gWidget->setLayout(windowLayout);
 
     // заплатка от бага (съезжает поле)
-//    scene->addItem(gWidget);
-//    scene->update();
+    scene->addItem(gWidget);
+    scene->update();
 }
 
 LabyGraphicsScene::~LabyGraphicsScene()
@@ -160,7 +164,6 @@ QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
                 else
                     currPixmap = pixmaps->flour();
             }
-//                currPixmap = pixmaps->flour();
             else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Grass)
                 currPixmap = pixmaps->grass();
             else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Wall)

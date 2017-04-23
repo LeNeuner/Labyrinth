@@ -6,19 +6,26 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>419</width>
-    <height>288</height>
+    <width>541</width>
+    <height>296</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>LabyMainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QGraphicsView" name="gvLaby"/>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <layout class="QHBoxLayout" name="hLayoutScenes">
+      <item>
+       <widget class="QGraphicsView" name="gvLaby"/>
+      </item>
+      <item>
+       <widget class="QGraphicsView" name="gvSecond"/>
+      </item>
+     </layout>
     </item>
-    <item>
+    <item row="1" column="0">
      <layout class="QHBoxLayout" name="hLayoutGenerate">
       <item>
        <spacer name="hSpacerGenerate">
@@ -43,13 +50,15 @@
      </layout>
     </item>
    </layout>
+   <zorder>horizontalLayoutWidget</zorder>
+   <zorder>gvLaby</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>419</width>
+     <width>541</width>
      <height>25</height>
     </rect>
    </property>

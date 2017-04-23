@@ -17,11 +17,14 @@ GraphicsManager::GraphicsManager(QObject *parent) :
 
 GraphicsManager::~GraphicsManager()
 {
-//    if (lGraphicsScene != nullptr)
-//        delete lGraphicsScene;
+    if (lGraphicsScene != nullptr)
+        delete lGraphicsScene;
+
+    if (lGraphicsPlayerScene != nullptr)
+        delete lGraphicsPlayerScene;
 }
 
-
+//--------------------------------------------------------------------------------
 // построение графической сцены
 QGraphicsScene* GraphicsManager::createGraphicsScene()
 {
@@ -38,4 +41,15 @@ QGraphicsScene *GraphicsManager::updateGraphicsScene()
     lGraphicsScene->updateScene(glModel);
     return lGraphicsScene->graphScene();
 }
+
+// построение и обновление графической сцены поля игрока
+QGraphicsScene *GraphicsManager::createPlayerGraphicsScene()
+{
+
+}
+QGraphicsScene *GraphicsManager::updatePlayerGraphicsScene()
+{
+
+}
+
 

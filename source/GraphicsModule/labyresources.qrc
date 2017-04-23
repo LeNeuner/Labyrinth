@@ -22,5 +22,6 @@
   <file>resources/images/t1.png</file>
   <file>resources/images/t2.png</file>
   <file>resources/images/t3.png</file>
+  <file>resources/images/bigGrass.jpg</file>
  </qresource>
 </RCC>

@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
     w.setWindowIcon(QIcon(":AppIcon"));
     w.setMinimumWidth(APP_WIDTH);
     w.setMinimumHeight(APP_HEIGHT);
+    w.showFullScreen();
     w.show();
 
     return a.exec();

@@ -20,13 +20,19 @@ public:
         glModel = model;
     }
     // построение графической сцены
-    QGraphicsScene* createGraphicsScene();
+    QGraphicsScene *createGraphicsScene();
     // обновление сцены
     QGraphicsScene *updateGraphicsScene();
 
+    // построение и обновление графической сцены поля игрока
+    QGraphicsScene *createPlayerGraphicsScene();
+    QGraphicsScene *updatePlayerGraphicsScene();
+
+
 private:
-    GlobalModel         *glModel = nullptr;
-    LabyGraphicsScene   *lGraphicsScene;
+    GlobalModel         *glModel                = nullptr;
+    LabyGraphicsScene   *lGraphicsScene         = nullptr;
+    LabyGraphicsScene   *lGraphicsPlayerScene   = nullptr;
 };
 
 #endif // GRAPHICSMANAGER_H

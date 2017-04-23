@@ -12,6 +12,9 @@ public:
     ~PixmapKeeper();
 
     QPixmap *field();
+    QPixmap *field_ver();
+    QPixmap *field_gor();
+    QPixmap *field_pillar();
     QPixmap *flour();
     QPixmap *flour_ver();
     QPixmap *flour_gor();
@@ -43,6 +46,9 @@ private:
     int small = DEFAULT_SMALL_PICTURE_SIZE;
 
     QPixmap *m_field;
+    QPixmap *m_field_ver;
+    QPixmap *m_field_gor;
+    QPixmap *m_field_pillar;
     QPixmap *m_flour;
     QPixmap *m_flour_ver;
     QPixmap *m_flour_gor;

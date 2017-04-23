@@ -30,10 +30,8 @@ QGraphicsScene* GraphicsManager::createGraphicsScene()
 {
     // графическое построение поля
     lGraphicsScene = new LabyGraphicsScene(glModel);
-
     return lGraphicsScene->graphScene();
 }
-
 
 // обновление сцены
 QGraphicsScene *GraphicsManager::updateGraphicsScene()
@@ -45,11 +43,14 @@ QGraphicsScene *GraphicsManager::updateGraphicsScene()
 // построение и обновление графической сцены поля игрока
 QGraphicsScene *GraphicsManager::createPlayerGraphicsScene()
 {
-
+    // графическое построение поля
+    lGraphicsPlayerScene = new LabyGraphicsScene(glModel);
+    return lGraphicsPlayerScene->graphScene();
 }
 QGraphicsScene *GraphicsManager::updatePlayerGraphicsScene()
 {
-
+    lGraphicsPlayerScene->updatePlayerScene(glModel);
+    return lGraphicsPlayerScene->graphScene();
 }
 
 

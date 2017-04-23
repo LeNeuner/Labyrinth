@@ -22,7 +22,7 @@ LabyMainWindow::LabyMainWindow(QWidget *parent) :
     setMainMenu();
 
     // графическое построение поля
-    ui->gvLaby->setScene(graphManager->createGraphicsScene());
+    ui->gvLaby->setScene(graphManager->createPlayerGraphicsScene());
 
     // графическое построение поля игрока
     ui->gvSecond->setScene(graphManager->createGraphicsScene());
@@ -146,7 +146,10 @@ void LabyMainWindow::createNewGame()
 {
     glModel->fieldModel->createField(glModel->gameSettModel);
 
-    ui->gvLaby->setScene(graphManager->updateGraphicsScene());
+    ui->gvSecond->setScene(graphManager->updateGraphicsScene());
+    ui->gvSecond->update();
+
+    ui->gvLaby->setScene(graphManager->updatePlayerGraphicsScene());
     ui->gvLaby->update();
 }
 //--------------------------------------------------
@@ -182,8 +185,9 @@ void LabyMainWindow::keyPressEvent(QKeyEvent *event)
 // временная генерация (убрать)
 void LabyMainWindow::on_bGenerate_clicked()
 {
-    glModel->fieldModel->createField(glModel->gameSettModel);
+    createNewGame();
+//    glModel->fieldModel->createField(glModel->gameSettModel);
 
-    ui->gvLaby->setScene(graphManager->updateGraphicsScene());
-    ui->gvLaby->update();
+//    ui->gvLaby->setScene(graphManager->updateGraphicsScene());
+//    ui->gvLaby->update();
 }

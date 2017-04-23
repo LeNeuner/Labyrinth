@@ -23,6 +23,8 @@ public:
 
     QGraphicsScene *updateScene(GlobalModel* model);
 
+    QGraphicsScene *updatePlayerScene(GlobalModel* model);
+
 signals:
     void HZ();
 

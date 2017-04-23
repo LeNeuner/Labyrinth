@@ -24,6 +24,9 @@ PixmapKeeper::PixmapKeeper(int bigSize, int smallSize) :
     QPixmap *hole_closed    = new QPixmap(QLatin1String(":resources/images/hole_closed.png"));
 
     QPixmap scField         = field->scaled(        big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+    QPixmap scField_ver     = field->scaled(        big,    small,  Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+    QPixmap scField_gor     = field->scaled(        small,  big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+    QPixmap scField_pillar  = field->scaled(        small,  small,  Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scFlour         = flour->scaled(        big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scFlour_ver     = flour_ver->scaled(    small,  big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scFlour_gor     = flour_gor->scaled(    big,    small,  Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
@@ -43,6 +46,9 @@ PixmapKeeper::PixmapKeeper(int bigSize, int smallSize) :
     QPixmap scHoleClosed    = hole_closed->scaled(  big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
 
     m_field                 = new QPixmap(scField);
+    m_field_ver             = new QPixmap(scField_ver);
+    m_field_gor             = new QPixmap(scField_gor);
+    m_field_pillar          = new QPixmap(scField_pillar);
     m_flour                 = new QPixmap(scFlour);
     m_flour_ver             = new QPixmap(scFlour_ver);
     m_flour_gor             = new QPixmap(scFlour_gor);
@@ -95,6 +101,9 @@ PixmapKeeper::PixmapKeeper(int bigSize, int smallSize) :
 PixmapKeeper::~PixmapKeeper()
 {
     delete m_field;
+    delete m_field_ver;
+    delete m_field_gor;
+    delete m_field_pillar;
     delete m_flour;
     delete m_flour_ver;
     delete m_flour_gor;
@@ -127,6 +136,21 @@ PixmapKeeper::~PixmapKeeper()
 QPixmap *PixmapKeeper::field()
 {
     return m_field;
+}
+
+QPixmap *PixmapKeeper::field_ver()
+{
+    return m_field_ver;
+}
+
+QPixmap *PixmapKeeper::field_gor()
+{
+    return m_field_gor;
+}
+
+QPixmap *PixmapKeeper::field_pillar()
+{
+    return m_field_pillar;
 }
 
 QPixmap *PixmapKeeper::flour()

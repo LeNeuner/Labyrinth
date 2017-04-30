@@ -19,6 +19,10 @@ public:
     QPixmap *flour_ver();
     QPixmap *flour_gor();
     QPixmap *grass();
+    QPixmap *path_right();
+    QPixmap *path_left();
+    QPixmap *path_up();
+    QPixmap *path_bottom();
     QPixmap *wall_gor();
     QPixmap *wall_ver();
     QPixmap *wall_pillar();
@@ -53,6 +57,10 @@ private:
     QPixmap *m_flour_ver;
     QPixmap *m_flour_gor;
     QPixmap *m_grass;
+    QPixmap *m_path_right;
+    QPixmap *m_path_left;
+    QPixmap *m_path_up;
+    QPixmap *m_path_bottom;
     QPixmap *m_wall_gor;
     QPixmap *m_wall_ver;
     QPixmap *m_wall_pillar;

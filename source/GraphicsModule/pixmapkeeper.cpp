@@ -9,6 +9,7 @@ PixmapKeeper::PixmapKeeper(int bigSize, int smallSize) :
     QPixmap *flour_ver      = new QPixmap(QLatin1String(":resources/images/flour_ver.png"));
     QPixmap *flour_gor      = new QPixmap(QLatin1String(":resources/images/flour_gor.png"));
     QPixmap *grass          = new QPixmap(QLatin1String(":resources/images/grass.png"));
+    QPixmap *path_right     = new QPixmap(QLatin1String(":resources/images/path.png"));
     QPixmap *wall_gor       = new QPixmap(QLatin1String(":resources/images/wall_gor.png"));
     QPixmap *wall_ver       = new QPixmap(QLatin1String(":resources/images/wall_ver.png"));
     QPixmap *wall_pillar    = new QPixmap(QLatin1String(":resources/images/wall_pillar.png"));
@@ -31,6 +32,7 @@ PixmapKeeper::PixmapKeeper(int bigSize, int smallSize) :
     QPixmap scFlour_ver     = flour_ver->scaled(    small,  big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scFlour_gor     = flour_gor->scaled(    big,    small,  Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scGrass         = grass->scaled(        big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+    QPixmap scPathRight     = path_right->scaled(   big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scWall_gor      = wall_gor->scaled(     big,    small,  Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scWall_ver      = wall_ver->scaled(     small,  big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scWall_pillar   = wall_pillar->scaled(  small,  small,  Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
@@ -53,6 +55,7 @@ PixmapKeeper::PixmapKeeper(int bigSize, int smallSize) :
     m_flour_ver             = new QPixmap(scFlour_ver);
     m_flour_gor             = new QPixmap(scFlour_gor);
     m_grass                 = new QPixmap(scGrass);
+    m_path_right            = new QPixmap(scPathRight);
     m_wall_gor              = new QPixmap(scWall_gor);
     m_wall_ver              = new QPixmap(scWall_ver);
     m_wall_pillar           = new QPixmap(scWall_pillar);
@@ -96,6 +99,15 @@ PixmapKeeper::PixmapKeeper(int bigSize, int smallSize) :
     m_t2_ru         = new QPixmap(scRU);
     m_t2_rb         = new QPixmap(scRB);
     m_t3            = new QPixmap(scCross);
+
+    QPixmap scPathBottom    = scPathRight.transformed(lum);
+    QPixmap scPathLeft      = scPathBottom.transformed(lum);
+    QPixmap scPathUp        = scPathLeft.transformed(lum);
+
+    m_path_bottom   = new QPixmap(scPathBottom);
+    m_path_left     = new QPixmap(scPathLeft);
+    m_path_up       = new QPixmap(scPathUp);
+
 }
 
 PixmapKeeper::~PixmapKeeper()
@@ -108,6 +120,10 @@ PixmapKeeper::~PixmapKeeper()
     delete m_flour_ver;
     delete m_flour_gor;
     delete m_grass;
+    delete m_path_right;
+    delete m_path_left;
+    delete m_path_bottom;
+    delete m_path_up;
     delete m_wall_gor;
     delete m_wall_ver;
     delete m_wall_pillar;
@@ -171,6 +187,26 @@ QPixmap *PixmapKeeper::flour_gor()
 QPixmap *PixmapKeeper::grass()
 {
     return m_grass;
+}
+
+QPixmap *PixmapKeeper::path_right()
+{
+    return m_path_right;
+}
+
+QPixmap *PixmapKeeper::path_left()
+{
+    return m_path_left;
+}
+
+QPixmap *PixmapKeeper::path_bottom()
+{
+    return m_path_bottom;
+}
+
+QPixmap *PixmapKeeper::path_up()
+{
+    return m_path_up;
 }
 
 QPixmap *PixmapKeeper::wall_gor()

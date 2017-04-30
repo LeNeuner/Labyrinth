@@ -29,7 +29,11 @@ enum class MaterialType : unsigned int
     Wall,
     Concrete,
     WallDest,
-    Exit
+    Exit,
+    PathRight,
+    PathLeft,
+    PathUp,
+    PathBottom
 };
 
 // тип объекта

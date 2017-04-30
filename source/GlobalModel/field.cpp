@@ -887,6 +887,7 @@ void Field::setExits(GameSettings *settings)
         {
             cell[y][x].setMaterialType(MaterialType::Exit);
             rightRandom = true;
+            cell[y-1][x].setMaterialType(MaterialType::PathUp);
         }
     }
     // right exit
@@ -901,6 +902,7 @@ void Field::setExits(GameSettings *settings)
         {
             cell[y][x].setMaterialType(MaterialType::Exit);
             rightRandom = true;
+            cell[y][x+1].setMaterialType(MaterialType::PathRight);
         }
     }
     // bottom exit
@@ -915,6 +917,7 @@ void Field::setExits(GameSettings *settings)
         {
             cell[y][x].setMaterialType(MaterialType::Exit);
             rightRandom = true;
+            cell[y+1][x].setMaterialType(MaterialType::PathBottom);
         }
     }
     // left exit
@@ -929,6 +932,7 @@ void Field::setExits(GameSettings *settings)
         {
             cell[y][x].setMaterialType(MaterialType::Exit);
             rightRandom = true;
+            cell[y][x-1].setMaterialType(MaterialType::PathLeft);
         }
     }
 }

@@ -20,8 +20,8 @@ public:
     // установить поле в значения по умолчаниию
     // void setDefaults();
 
-    // // создание игрового поля
-    // void createField(GameSettings *settings);
+    // создание игрового поля
+    void createPlayerField(GameSettings *settings);
     //
     //
     // int getFullWidth(){
@@ -32,7 +32,7 @@ public:
     // }
     //
     // массив ячеек поля (как его видит игрок)
-    PlayerCellInfo **playerCell;
+    PlayerCellInfo **playerCell = nullptr;
 
 private:
 

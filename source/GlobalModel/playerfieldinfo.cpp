@@ -28,212 +28,53 @@ PlayerFieldInfo::~PlayerFieldInfo()
 }
 
 //--------------------------------------------------------------------------------
-// // установить поле в значения по умолчаниию
-// void Field::setDefaults()
-// {
-//     width   = defaultWidth;
-//     height  = defaultHeight;
-//     xNum    = width  * 2 + 3;
-//     yNum    = height * 2 + 3;
-//
-//     // создание поля соответствующего размера
-//     cell = new Cell* [yNum];
-//     for (int y = 0; y < yNum; y++)
-//     {
-//         cell[y] = new Cell [xNum];
-//     }
-//
-//     // square cells
-//     for (int y = 0; y < yNum; y+=2)
-//     {
-//         for (int x = 0; x < xNum; x+=2)
-//         {
-//             cell[y][x].setCellTypes(FormType::Square, MaterialType::None,
-//                                     ObjectType::None, ObjectState::None);
-//         }
-//     }
-//     // vertical cells
-//     for (int y = 0; y < yNum; y+=2)
-//     {
-//         for (int x = 1; x < xNum-1; x+=2)
-//         {
-//             cell[y][x].setCellTypes(FormType::Vertical, MaterialType::None,
-//                                     ObjectType::None, ObjectState::None);
-//         }
-//     }
-//     // gorizontal cells
-//     for (int y = 1; y < yNum-1; y+=2)
-//     {
-//         for (int x = 0; x < xNum; x+=2)
-//         {
-//             cell[y][x].setCellTypes(FormType::Gorizontal, MaterialType::None,
-//                                     ObjectType::None, ObjectState::None);
-//         }
-//     }
-//     // pillar cells
-//     for (int y = 1; y < yNum-1; y+=2)
-//     {
-//         for (int x = 1; x < xNum-1; x+=2)
-//         {
-//             cell[y][x].setCellTypes(FormType::Pillar, MaterialType::None,
-//                                     ObjectType::None, ObjectState::None);
-//         }
-//     }
-// }
-//
-// // создание игрового поля
-// void Field::createField(GameSettings *settings)
-// {
-//     // получение значения настроек поля
-//     width   = settings->fieldWidth();
-//     height  = settings->fieldHeight();
-//     xNum    = width  * 2 + 3;
-//     yNum    = height * 2 + 3;
-//
-//     // очистка предыдущего поля
-//     if (cell != nullptr)
-//     {
-//         delete cell;
-//         cell = nullptr;
-//     }
-//     usedPos.clear();
-//
-//     // создание поля соответствующего размера
-//     cell = new Cell* [yNum];
-//     for (int y = 0; y < yNum; y++)
-//     {
-//         cell[y] = new Cell [xNum];
-//     }
-//
-//     // обновление системы рандома
-//     srand(time(NULL));
-//
-//     // установка стартового состояния полей (трава, бетон)
+// создание игрового поля
+void PlayerFieldInfo::createPlayerField(GameSettings *settings)
+{
+     // получение значения настроек поля
+     width   = settings->fieldWidth();
+     height  = settings->fieldHeight();
+     xNum    = width  * 2 + 3;
+     yNum    = height * 2 + 3;
+
+     // очистка предыдущего поля
+     if (playerCell != nullptr)
+     {
+         delete playerCell;
+         playerCell = nullptr;
+     }
+
+     // создание поля соответствующего размера
+     playerCell = new PlayerCellInfo* [yNum];
+     for (int y = 0; y < yNum; y++)
+     {
+         playerCell[y] = new PlayerCellInfo [xNum];
+     }
+
+     // закрытие всех ячеек
+     for (int y = 0; y < yNum; y+=1)
+     {
+         for (int x = 0; x < xNum; x+=1)
+         {
+             playerCell[y][x].setCellState(CellState::Closed);
+         }
+     }
+
+     // открытие колонн
+     for (int y = 3; y < yNum-3; y+=2)
+     {
+         for (int x = 3; x < xNum-3; x+=2)
+         {
+             playerCell[y][x].setCellState(CellState::Opened);
+         }
+     }
+
+     // установка стартового состояния полей (трава, бетон) (полупрозрачно)
 //     setBasicFields();
-//
-//     // определение положения реального клада
-//     int blockedCellsNum = 0;
-//     setRealTreasures(settings, blockedCellsNum);
-//
-//     // определение положения ложного клада
-//     setFakeTreasures(settings, blockedCellsNum);
-//
-//     // установка стен кладов
-//     setTreasuresWalls();
-//
-//     // определение положений арсеналов
-//     setArsenals(settings, blockedCellsNum);
-//
-//     // установка стен арсеналов
-//     setArsenalsWalls();
-//
-//     // определение положения остальных стен
-//     for (int y = 2; y <= yNum-5; y+=2)
-//     {
-//         for (int x = 2; x <= xNum-5; x+=2)
-//         {
-//             Position pos;
-//             pos.y = y;
-//             pos.x = x;
-//             setWallsPositions(settings, pos, blockedCellsNum);
-//         }
-//     }
-//
-//     //  определение положения выходов
-//     setExits(settings);
-//
-//     // определение положения ям
-//     if (settings->holeTypeNum() != 0)
-//         setHoles(settings);
-// }
-// //--------------------------------------------------------------------------------
-//
-//
-// //--------------------------------------------------------------------------------
-// // ФУНКЦИИ ТЕСТИРОВАНИЯ ПРАВИЛЬНОЙ ГЕНЕРАЦИИ
-// //--------------------------------------------------------------------------------
-// // проверка достаточного количества проходов в лабиринте
-// bool Field::checkFreeAccess(GameSettings *settings, int blockedCellsNum)
-// {
-//     int visitedCellCount = 0;
-//     for (int y = 2; y <= yNum-3; y+=2)
-//     {
-//         for (int x = 2; x <= xNum-3; x+=2)
-//         {
-//             if (!cell[y][x].blocked())
-//             {
-//                 checkCell(y, x, visitedCellCount);
-//                 break;
-//             }
-//         }
-//         break;
-//     }
-//
-//     int playCells = settings->fieldWidth() * settings->fieldHeight();
-// //    int xZone = settings->realTreasureNum() + settings->fakeTreasureNum();
-//
-// //    qDebug() << "playCells:     " << playCells;
-// //    qDebug() << "xZone:         " << xZone;
-// //    qDebug() << "visCellCount:  " << visitedCellCount;
-//
-//     for (int y = 2; y <= yNum-3; y+=2)
-//     {
-//         for (int x = 2; x <= xNum-3; x+=2)
-//         {
-//             cell[y][x].setVisited(false);
-//         }
-//     }
-//
-//     if ((playCells - blockedCellsNum) != visitedCellCount)
-//         return false;
-//
-//     return true;
-// }
-//
-//
-// // проверка клетки на посещенность
-// void Field::checkCell(int y, int x, int &visitedCellCount)
-// {
-//     visitedCellCount++;
-//     cell[y][x].setVisited(true);
-//     cell[y][x].testVisitedNum = visitedCellCount;
-//
-//
-//     if ((cell[y][x-1].materialType() != MaterialType::Wall) &&
-//         (!cell[y][x-2].blocked()) && (!cell[y][x-2].visited()))
-//         checkCell(y, x-2, visitedCellCount);
-//
-//     if ((cell[y-1][x].materialType() != MaterialType::Wall) &&
-//         (!cell[y-2][x].blocked()) && (!cell[y-2][x].visited()))
-//         checkCell(y-2, x, visitedCellCount);
-//
-//     if ((cell[y][x+1].materialType() != MaterialType::Wall) &&
-//         (!cell[y][x+2].blocked()) && (!cell[y][x+2].visited()))
-//         checkCell(y, x+2, visitedCellCount);
-//
-//     if ((cell[y+1][x].materialType() != MaterialType::Wall) &&
-//         (!cell[y+2][x].blocked()) && (!cell[y+2][x].visited()))
-//         checkCell(y+2, x, visitedCellCount);
-//
-// //    if ((cell[y][x-1].materialType() != MaterialType::Wall) &&
-// //        (cell[y][x-2].materialType() != MaterialType::Concrete) && (!cell[y][x-2].visited()))
-// //        checkCell(y, x-2, visitedCellCount);
-//
-// //    if ((cell[y-1][x].materialType() != MaterialType::Wall) &&
-// //        (cell[y-2][x].materialType() != MaterialType::Concrete) && (!cell[y-2][x].visited()))
-// //        checkCell(y-2, x, visitedCellCount);
-//
-// //    if ((cell[y][x+1].materialType() != MaterialType::Wall) &&
-// //        (cell[y][x+2].materialType() != MaterialType::Concrete) && (!cell[y][x+2].visited()))
-// //        checkCell(y, x+2, visitedCellCount);
-//
-// //    if ((cell[y+1][x].materialType() != MaterialType::Wall) &&
-// //        (cell[y+2][x].materialType() != MaterialType::Concrete) && (!cell[y+2][x].visited()))
-// //        checkCell(y+2, x, visitedCellCount);
-// }
-// //--------------------------------------------------------------------------------
-//
-//
+}
+//--------------------------------------------------------------------------------
+
+
 // //--------------------------------------------------------------------------------
 // // ФУНКЦИИ РАНДОМА И РАССТАНОВКИ ЭЛЕМЕНТОВ
 // //--------------------------------------------------------------------------------

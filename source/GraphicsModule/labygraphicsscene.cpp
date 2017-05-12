@@ -331,9 +331,12 @@ QGraphicsScene *LabyGraphicsScene::updatePlayerScene(GlobalModel *model)
             else if (model->fieldModel->cell[y][x].formType() == FormType::Pillar)
                 cellSize = QSizeF(small, small);
 
-            else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Grass)
+            if (model->playerFieldModel->playerCell[y][x].cellState() == CellState::Closed)
+                continue;
+
+            if (model->fieldModel->cell[y][x].materialType() == MaterialType::Grass)
                 currPixmap = pixmaps->grass();
-            if (model->fieldModel->cell[y][x].materialType() == MaterialType::Field)
+            else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Field)
             {
                 if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
                     currPixmap = pixmaps->flour_ver();

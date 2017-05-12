@@ -5,6 +5,7 @@
 
 #include "globalModel_global.h"
 #include "field.h"
+#include "playerfieldinfo.h"
 #include "gamesettings.h"
 
 class GLOBALMODELSHARED_EXPORT GlobalModel : public QObject
@@ -16,8 +17,9 @@ public:
     // сбросить значения в дефолт для всех моделей
     void setDefaults();
 
-    Field*          fieldModel;
-    GameSettings*   gameSettModel;
+    Field*              fieldModel;
+    PlayerFieldInfo*    playerFieldModel;
+    GameSettings*       gameSettModel;
 };
 
 #endif // GLOBALMODEL_H

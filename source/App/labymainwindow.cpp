@@ -145,6 +145,7 @@ void LabyMainWindow::aboutWindowOpen()
 void LabyMainWindow::createNewGame()
 {
     glModel->fieldModel->createField(glModel->gameSettModel);
+    glModel->playerFieldModel->createPlayerField(glModel->gameSettModel);
 
     ui->gvSecond->setScene(graphManager->updateGraphicsScene());
     ui->gvSecond->update();

@@ -365,18 +365,53 @@ QGraphicsScene *LabyGraphicsScene::updatePlayerScene(GlobalModel *model)
             {
                 if (model->fieldModel->cell[y][x].materialType() == MaterialType::Grass)
                     currPixmap = pixmaps->grass();
+                else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Concrete)
+                {
+                    if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
+                        currPixmap = pixmaps->concrete_ver();
+                    else if (model->fieldModel->cell[y][x].formType() == FormType::Gorizontal)
+                        currPixmap = pixmaps->concrete_gor();
+                    else if (model->fieldModel->cell[y][x].formType() == FormType::Pillar)
+                        currPixmap = pixmaps->concrete_pillar();
+                    currOpacity = 0.7;
+                }
+                else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Exit)
+                {
+                    if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
+                        currPixmap = pixmaps->concrete_ver();
+                    else if (model->fieldModel->cell[y][x].formType() == FormType::Gorizontal)
+                        currPixmap = pixmaps->concrete_gor();
+                    currOpacity = 0.7;
+                }
+                else if ((model->fieldModel->cell[y][x].materialType() == MaterialType::Flour) ||
+                         (model->fieldModel->cell[y][x].materialType() == MaterialType::Wall))
+                {
+                    if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
+                        currPixmap = pixmaps->flour_ver();
+                    else if (model->fieldModel->cell[y][x].formType() == FormType::Gorizontal)
+                        currPixmap = pixmaps->flour_gor();
+                    else
+                        currPixmap = pixmaps->flour();
+                    currOpacity = 0.7;
+                }
+                else if ((model->fieldModel->cell[y][x].materialType() == MaterialType::PathRight) ||
+                         (model->fieldModel->cell[y][x].materialType() == MaterialType::PathLeft) ||
+                         (model->fieldModel->cell[y][x].materialType() == MaterialType::PathUp) ||
+                         (model->fieldModel->cell[y][x].materialType() == MaterialType::PathBottom))
+                {
+                    currPixmap = pixmaps->grass();
+                }
 
 
-                if (model->fieldModel->cell[y][x].formType() == FormType::Square)
-                    currPixmap = pixmaps->flour(); // field();
-                else if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
-                    currPixmap = pixmaps->flour_ver(); // field_ver();
-                else if (model->fieldModel->cell[y][x].formType() == FormType::Gorizontal)
-                    currPixmap = pixmaps->wall_gor(); // field_gor();
-                else if (model->fieldModel->cell[y][x].formType() == FormType::Pillar)
-                    currPixmap = pixmaps->concrete_pillar(); //field_pillar();
-
-                currOpacity = 0.7;
+//                if (model->fieldModel->cell[y][x].formType() == FormType::Square)
+//                    currPixmap = pixmaps->flour(); // field();
+//                else if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
+//                    currPixmap = pixmaps->flour_ver(); // field_ver();
+//                else if (model->fieldModel->cell[y][x].formType() == FormType::Gorizontal)
+//                    currPixmap = pixmaps->wall_gor(); // field_gor();
+//                else if (model->fieldModel->cell[y][x].formType() == FormType::Pillar)
+//                    currPixmap = pixmaps->concrete_pillar(); //field_pillar();
+//                currOpacity = 0.7;
             }
             else
             {

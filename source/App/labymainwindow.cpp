@@ -21,10 +21,10 @@ LabyMainWindow::LabyMainWindow(QWidget *parent) :
     // установка виджетов основного меню
     setMainMenu();
 
-    // графическое построение поля
+    // графическое построение поля игрока
     ui->gvLaby->setScene(graphManager->createPlayerGraphicsScene());
 
-    // графическое построение поля игрока
+    // графическое построение поля
     ui->gvSecond->setScene(graphManager->createGraphicsScene());
 }
 
@@ -92,6 +92,15 @@ void LabyMainWindow::setMainMenu()
     actReference->setWhatsThis("Информация о программе");
     connect(actReference, SIGNAL(triggered()), SLOT(aboutWindowOpen()));
     this->menuBar()->addAction(actReference);
+
+    // Дополнительная кнопка выхода
+    QAction* actAddExit = new QAction("exit", 0);
+    actAddExit->setStatusTip("Выход из приложения");
+    actAddExit->setWhatsThis("Выход из приложения");
+    actAddExit->setIcon(QPixmap(":ExitIcon"));
+    connect(actAddExit, SIGNAL(triggered()), this, SLOT(close()));
+    this->menuBar()->addSeparator();
+    this->menuBar()->addAction(actAddExit);
     //--------------------------------------------------
 }
 

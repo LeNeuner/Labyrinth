@@ -24,7 +24,7 @@ enum class FormType : unsigned int
 enum class MaterialType : unsigned int
 {
     None,
-    Field,
+    Flour,
     Grass,
     Wall,
     Concrete,

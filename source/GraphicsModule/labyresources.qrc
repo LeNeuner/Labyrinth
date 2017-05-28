@@ -1,7 +1,9 @@
 <RCC>
  <qresource>
   <file>resources/images/test.png</file>
-  <file>resources/images/field.png</file>
+  <file>resources/images/none.png</file>
+  <file>resources/images/none_ver.png</file>
+  <file>resources/images/none_gor.png</file>
   <file>resources/images/flour.png</file>
   <file>resources/images/flour_ver.png</file>
   <file>resources/images/flour_gor.png</file>

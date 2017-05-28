@@ -15,7 +15,7 @@ LabyGraphicsScene::LabyGraphicsScene(GlobalModel* model) /*: QObject(), QGraphic
 //    QPixmap bigGrass = bGrass->scaled(1000, 600, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
 //    scene->setBackgroundBrush(Qt::green);
 
-    BasicRect *item = new BasicRect(pixmaps->field(), QSizeF(small, small));
+    BasicRect *item = new BasicRect(pixmaps->none(), QSizeF(small, small));
 
     QGraphicsLinearLayout *windowLayout = new QGraphicsLinearLayout(Qt::Vertical);
     grid = new QGraphicsGridLayout(windowLayout);
@@ -26,7 +26,7 @@ LabyGraphicsScene::LabyGraphicsScene(GlobalModel* model) /*: QObject(), QGraphic
         qDebug() << "nullptr";
 
     QSizeF  cellSize;
-    QPixmap *currPixmap = pixmaps->field();
+    QPixmap *currPixmap = pixmaps->none();
     for (int y = 0; y < model->fieldModel->getFullHeight(); y++)
     {
         for (int x = 0; x < model->fieldModel->getFullWidth(); x++)
@@ -107,6 +107,12 @@ QGraphicsScene* LabyGraphicsScene::graphScene()
 QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
 {
     //--------------------------------------------------
+    // установка поля
+    QPixmap *bGrass  = new QPixmap(QLatin1String(":resources/images/bigGrass.jpg"));
+    QPixmap bigGrass = bGrass->scaled(scene->width()+200, scene->height()+100, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+    scene->setBackgroundBrush(bigGrass);
+
+    //--------------------------------------------------
     // отрисовка в соответствии с новой моделью
     int big   = DEFAULT_BIG_PICTURE_SIZE;
     int small = DEFAULT_SMALL_PICTURE_SIZE;
@@ -142,8 +148,9 @@ QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
     grid->setHorizontalSpacing(0);
 
     QSizeF  cellSize;
-    QPixmap *currPixmap = pixmaps->field();
-    BasicRect *item = new BasicRect(pixmaps->field(), QSizeF(small, small));
+    QPixmap *currPixmap = pixmaps->none();
+    double  currOpacity = 1.0;
+    BasicRect *item = new BasicRect(pixmaps->none(), QSizeF(small, small));
     // ссылка на предыдущее поле
     BasicRect *lastItem = nullptr;
     for (int y = 0; y < model->fieldModel->getFullHeight(); y++)
@@ -165,8 +172,17 @@ QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
 
             // материал поля
             if (model->fieldModel->cell[y][x].materialType() == MaterialType::None)
-                currPixmap = pixmaps->field();
-            else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Field)
+            {
+                if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
+                    currPixmap = pixmaps->none_ver();
+                else if (model->fieldModel->cell[y][x].formType() == FormType::Gorizontal)
+                    currPixmap = pixmaps->none_gor();
+                else if (model->fieldModel->cell[y][x].formType() == FormType::Pillar)
+                    currPixmap = pixmaps->none_pillar();
+                else
+                    currPixmap = pixmaps->none();
+            }
+            else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Flour)
             {
                 if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
                     currPixmap = pixmaps->flour_ver();
@@ -176,7 +192,9 @@ QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
                     currPixmap = pixmaps->flour();
             }
             else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Grass)
-                currPixmap = pixmaps->grass();
+            {
+                    currPixmap = pixmaps->grass();
+            }
             else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Wall)
             {
                 if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
@@ -204,6 +222,16 @@ QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
                 else
                     currPixmap = pixmaps->flour();
             }
+            else if (model->fieldModel->cell[y][x].materialType() == MaterialType::PathRight)
+                currPixmap = pixmaps->path_right();
+            else if (model->fieldModel->cell[y][x].materialType() == MaterialType::PathLeft)
+                currPixmap = pixmaps->path_left();
+            else if (model->fieldModel->cell[y][x].materialType() == MaterialType::PathUp)
+                currPixmap = pixmaps->path_up();
+            else if (model->fieldModel->cell[y][x].materialType() == MaterialType::PathBottom)
+                currPixmap = pixmaps->path_bottom();
+            else
+                currPixmap = pixmaps->grass();
 
 
             // тип объекта в поле
@@ -235,13 +263,13 @@ QGraphicsScene *LabyGraphicsScene::updateScene(GlobalModel* model)
 //            }
 
 
-            item = new BasicRect(currPixmap, cellSize, text);
+            item = new BasicRect(currPixmap, cellSize, currOpacity, text);
             grid->addItem(item, y, x);
 
 
             if (testPixmap != nullptr)
             {
-                item = new BasicRect(testPixmap, cellSize, text);
+                item = new BasicRect(testPixmap, cellSize, currOpacity, text);
                 grid->addItem(item, y, x);
             }
 
@@ -312,8 +340,9 @@ QGraphicsScene *LabyGraphicsScene::updatePlayerScene(GlobalModel *model)
     grid->setHorizontalSpacing(0);
 
     QSizeF  cellSize;
-    QPixmap *currPixmap = pixmaps->field();
-    BasicRect *item = new BasicRect(pixmaps->field(), QSizeF(small, small));
+    QPixmap *currPixmap = pixmaps->none();
+    double  currOpacity = 1.0;
+    BasicRect *item = new BasicRect(pixmaps->none(), QSizeF(small, small));
     for (int y = 0; y < model->fieldModel->getFullHeight(); y++)
     {
         for (int x = 0; x < model->fieldModel->getFullWidth(); x++)
@@ -321,7 +350,7 @@ QGraphicsScene *LabyGraphicsScene::updatePlayerScene(GlobalModel *model)
             QPixmap *testPixmap = nullptr;
             QString text = "";
 
-            // форма поля
+            // установка размера ячейки в соответствии с формой поля
             if (model->fieldModel->cell[y][x].formType() == FormType::Square)
                 cellSize = QSizeF(big, big);
             else if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
@@ -331,59 +360,79 @@ QGraphicsScene *LabyGraphicsScene::updatePlayerScene(GlobalModel *model)
             else if (model->fieldModel->cell[y][x].formType() == FormType::Pillar)
                 cellSize = QSizeF(small, small);
 
+            // отрисовка закрытых и открытых для пользователя ячеек
             if (model->playerFieldModel->playerCell[y][x].cellState() == CellState::Closed)
-                continue;
+            {
+                if (model->fieldModel->cell[y][x].materialType() == MaterialType::Grass)
+                    currPixmap = pixmaps->grass();
 
-            if (model->fieldModel->cell[y][x].materialType() == MaterialType::Grass)
-                currPixmap = pixmaps->grass();
-            else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Field)
-            {
-                if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
-                    currPixmap = pixmaps->flour_ver();
+
+                if (model->fieldModel->cell[y][x].formType() == FormType::Square)
+                    currPixmap = pixmaps->flour(); // field();
+                else if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
+                    currPixmap = pixmaps->flour_ver(); // field_ver();
                 else if (model->fieldModel->cell[y][x].formType() == FormType::Gorizontal)
-                    currPixmap = pixmaps->flour_gor();
-                else
-                    currPixmap = pixmaps->flour();
-            }
-            else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Wall)
-            {
-                if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
-                    currPixmap = pixmaps->wall_ver();
-                else if (model->fieldModel->cell[y][x].formType() == FormType::Gorizontal)
-                    currPixmap = pixmaps->wall_gor();
+                    currPixmap = pixmaps->wall_gor(); // field_gor();
                 else if (model->fieldModel->cell[y][x].formType() == FormType::Pillar)
-                    currPixmap = pixmaps->wall_pillar();
+                    currPixmap = pixmaps->concrete_pillar(); //field_pillar();
+
+                currOpacity = 0.7;
             }
-            else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Concrete)
-            {
-                if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
-                    currPixmap = pixmaps->concrete_ver();
-                else if (model->fieldModel->cell[y][x].formType() == FormType::Gorizontal)
-                    currPixmap = pixmaps->concrete_gor();
-                else if (model->fieldModel->cell[y][x].formType() == FormType::Pillar)
-                    currPixmap = pixmaps->concrete_pillar();
-            }
-            else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Exit)
-            {
-                if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
-                    currPixmap = pixmaps->flour_ver();
-                else if (model->fieldModel->cell[y][x].formType() == FormType::Gorizontal)
-                    currPixmap = pixmaps->flour_gor();
-                else
-                    currPixmap = pixmaps->flour();
-            }
-            else if (model->fieldModel->cell[y][x].materialType() == MaterialType::PathRight)
-                currPixmap = pixmaps->path_right();
-            else if (model->fieldModel->cell[y][x].materialType() == MaterialType::PathLeft)
-                currPixmap = pixmaps->path_left();
-            else if (model->fieldModel->cell[y][x].materialType() == MaterialType::PathUp)
-                currPixmap = pixmaps->path_up();
-            else if (model->fieldModel->cell[y][x].materialType() == MaterialType::PathBottom)
-                currPixmap = pixmaps->path_bottom();
             else
-                currPixmap = pixmaps->grass();
+            {
+                if (model->fieldModel->cell[y][x].materialType() == MaterialType::Grass)
+                    currPixmap = pixmaps->grass();
+                else if (model->fieldModel->cell[y][x].materialType() == MaterialType::None)
+                {
+                    if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
+                        currPixmap = pixmaps->flour_ver();
+                    else if (model->fieldModel->cell[y][x].formType() == FormType::Gorizontal)
+                        currPixmap = pixmaps->flour_gor();
+                    else
+                        currPixmap = pixmaps->flour();
+                }
+                else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Wall)
+                {
+                    if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
+                        currPixmap = pixmaps->wall_ver();
+                    else if (model->fieldModel->cell[y][x].formType() == FormType::Gorizontal)
+                        currPixmap = pixmaps->wall_gor();
+                    else if (model->fieldModel->cell[y][x].formType() == FormType::Pillar)
+                        currPixmap = pixmaps->wall_pillar();
+                }
+                else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Concrete)
+                {
+                    if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
+                        currPixmap = pixmaps->concrete_ver();
+                    else if (model->fieldModel->cell[y][x].formType() == FormType::Gorizontal)
+                        currPixmap = pixmaps->concrete_gor();
+                    else if (model->fieldModel->cell[y][x].formType() == FormType::Pillar)
+                        currPixmap = pixmaps->concrete_pillar();
+                }
+                else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Exit)
+                {
+                    if (model->fieldModel->cell[y][x].formType() == FormType::Vertical)
+                        currPixmap = pixmaps->flour_ver();
+                    else if (model->fieldModel->cell[y][x].formType() == FormType::Gorizontal)
+                        currPixmap = pixmaps->flour_gor();
+                    else
+                        currPixmap = pixmaps->flour();
+                }
+                else if (model->fieldModel->cell[y][x].materialType() == MaterialType::PathRight)
+                    currPixmap = pixmaps->path_right();
+                else if (model->fieldModel->cell[y][x].materialType() == MaterialType::PathLeft)
+                    currPixmap = pixmaps->path_left();
+                else if (model->fieldModel->cell[y][x].materialType() == MaterialType::PathUp)
+                    currPixmap = pixmaps->path_up();
+                else if (model->fieldModel->cell[y][x].materialType() == MaterialType::PathBottom)
+                    currPixmap = pixmaps->path_bottom();
+                else
+                    currPixmap = pixmaps->grass();
 
-            item = new BasicRect(currPixmap, cellSize, text);
+                currOpacity = 1.0;
+            } // end if open/close cell
+
+            item = new BasicRect(currPixmap, cellSize, currOpacity, text);
             grid->addItem(item, y, x);
         }
     }

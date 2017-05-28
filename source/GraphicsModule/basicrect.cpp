@@ -6,8 +6,11 @@
 
 #include <QDebug>
 
-BasicRect::BasicRect(QPixmap *pixmap, QSizeF size, QString text, QGraphicsItem *parent/* = 0*/)
-    : QObject(), QGraphicsItem(parent), QGraphicsLayoutItem()
+BasicRect::BasicRect(QPixmap *pixmap, QSizeF size, double opac, QString text,
+                     QGraphicsItem *parent/* = 0*/)
+    : QObject(),
+      QGraphicsItem(parent),
+      QGraphicsLayoutItem()
 {
     m_size.setWidth(size.width());
     m_size.setHeight(size.height());
@@ -18,12 +21,13 @@ BasicRect::BasicRect(QPixmap *pixmap, QSizeF size, QString text, QGraphicsItem *
 //    m_pix = test;
     m_pix = pixmap;
 
-
     if (text != "")
         m_text = text;
 
-//    m_pix->scaledToWidth(m_size.width());
-//    m_pix->scaledToHeight(m_size.height());
+    // установка прозрачности ячеек
+    if (opac)
+        m_opacity = opac;
+    this->setOpacity(m_opacity);
 
     setGraphicsItem(this);
 }

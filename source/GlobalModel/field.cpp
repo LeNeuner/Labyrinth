@@ -170,11 +170,6 @@ bool Field::checkFreeAccess(GameSettings *settings, int blockedCellsNum)
     }
 
     int playCells = settings->fieldWidth() * settings->fieldHeight();
-//    int xZone = settings->realTreasureNum() + settings->fakeTreasureNum();
-
-//    qDebug() << "playCells:     " << playCells;
-//    qDebug() << "xZone:         " << xZone;
-//    qDebug() << "visCellCount:  " << visitedCellCount;
 
     for (int y = 2; y <= yNum-3; y+=2)
     {
@@ -214,22 +209,6 @@ void Field::checkCell(int y, int x, int &visitedCellCount)
     if ((cell[y+1][x].materialType() != MaterialType::Wall) &&
         (!cell[y+2][x].blocked()) && (!cell[y+2][x].visited()))
         checkCell(y+2, x, visitedCellCount);
-
-//    if ((cell[y][x-1].materialType() != MaterialType::Wall) &&
-//        (cell[y][x-2].materialType() != MaterialType::Concrete) && (!cell[y][x-2].visited()))
-//        checkCell(y, x-2, visitedCellCount);
-
-//    if ((cell[y-1][x].materialType() != MaterialType::Wall) &&
-//        (cell[y-2][x].materialType() != MaterialType::Concrete) && (!cell[y-2][x].visited()))
-//        checkCell(y-2, x, visitedCellCount);
-
-//    if ((cell[y][x+1].materialType() != MaterialType::Wall) &&
-//        (cell[y][x+2].materialType() != MaterialType::Concrete) && (!cell[y][x+2].visited()))
-//        checkCell(y, x+2, visitedCellCount);
-
-//    if ((cell[y+1][x].materialType() != MaterialType::Wall) &&
-//        (cell[y+2][x].materialType() != MaterialType::Concrete) && (!cell[y+2][x].visited()))
-//        checkCell(y+2, x, visitedCellCount);
 }
 //--------------------------------------------------------------------------------
 
@@ -334,7 +313,7 @@ void Field::setBasicFields()
     {
         for (int x = 2; x <= xNum-3; x+=2)
         {
-            cell[y][x].setCellTypes(FormType::Square, MaterialType::Field,
+            cell[y][x].setCellTypes(FormType::Square, MaterialType::Flour,
                                     ObjectType::None, ObjectState::None);
 
             cell[y][x].setBlocked(false);
@@ -345,7 +324,7 @@ void Field::setBasicFields()
     {
         for (int x = 2; x <= xNum-3; x+=2)
         {
-            cell[y][x].setCellTypes(FormType::Gorizontal, MaterialType::Field,
+            cell[y][x].setCellTypes(FormType::Gorizontal, MaterialType::Flour,
                                     ObjectType::None, ObjectState::None);
             cell[y][x].setBlocked(false);
         }
@@ -355,7 +334,7 @@ void Field::setBasicFields()
     {
         for (int x = 3; x < xNum-3; x+=2)
         {
-            cell[y][x].setCellTypes(FormType::Vertical, MaterialType::Field,
+            cell[y][x].setCellTypes(FormType::Vertical, MaterialType::Flour,
                                     ObjectType::None, ObjectState::None);
             cell[y][x].setBlocked(false);
         }
@@ -564,7 +543,7 @@ void Field::setArsenalsWalls()
                 {
                     if (!cell[y-1][x].blocked())
                     {
-                        cell[y-1][x].setMaterialType(MaterialType::Field);
+                        cell[y-1][x].setMaterialType(MaterialType::Flour);
                         cell[y-1][x].setBlocked(true);
 
                         if (!cell[y][x+1].blocked())
@@ -589,7 +568,7 @@ void Field::setArsenalsWalls()
                 {
                     if (!cell[y][x+1].blocked())
                     {
-                        cell[y][x+1].setMaterialType(MaterialType::Field);
+                        cell[y][x+1].setMaterialType(MaterialType::Flour);
                         cell[y][x+1].setBlocked(true);
 
                         if (!cell[y-1][x].blocked())
@@ -614,7 +593,7 @@ void Field::setArsenalsWalls()
                 {
                     if (!cell[y+1][x].blocked())
                     {
-                        cell[y+1][x].setMaterialType(MaterialType::Field);
+                        cell[y+1][x].setMaterialType(MaterialType::Flour);
                         cell[y+1][x].setBlocked(true);
 
                         if (!cell[y][x+1].blocked())
@@ -639,7 +618,7 @@ void Field::setArsenalsWalls()
                 {
                     if (!cell[y][x-1].blocked())
                     {
-                        cell[y][x-1].setMaterialType(MaterialType::Field);
+                        cell[y][x-1].setMaterialType(MaterialType::Flour);
                         cell[y][x-1].setBlocked(true);
 
                         if (!cell[y][x+1].blocked())
@@ -689,7 +668,7 @@ void Field::setWallsPositions(GameSettings *settings, Position &pos, int &blocke
             }
             else
             {
-                cell[y][x+1].setMaterialType(MaterialType::Field);
+                cell[y][x+1].setMaterialType(MaterialType::Flour);
 
                 Position upBlockPos;
                 upBlockPos.y = y - 2;
@@ -722,7 +701,7 @@ void Field::setWallsPositions(GameSettings *settings, Position &pos, int &blocke
             }
             else
             {
-                cell[y+1][x+2].setMaterialType(MaterialType::Field);
+                cell[y+1][x+2].setMaterialType(MaterialType::Flour);
             }
         }
         else
@@ -746,7 +725,7 @@ void Field::setWallsPositions(GameSettings *settings, Position &pos, int &blocke
             }
             else
             {
-                cell[y+2][x+1].setMaterialType(MaterialType::Field);
+                cell[y+2][x+1].setMaterialType(MaterialType::Flour);
             }
         }
         else
@@ -770,7 +749,7 @@ void Field::setWallsPositions(GameSettings *settings, Position &pos, int &blocke
             }
             else
             {
-                cell[y+1][x].setMaterialType(MaterialType::Field);
+                cell[y+1][x].setMaterialType(MaterialType::Flour);
 
                 Position leftBlockPos;
                 leftBlockPos.y = y;
@@ -822,13 +801,13 @@ void Field::setWallsPositions(GameSettings *settings, Position &pos, int &blocke
         else
         {
             if (!cell[y][x+1].blocked())
-                cell[y][x+1].setMaterialType(MaterialType::Field);
+                cell[y][x+1].setMaterialType(MaterialType::Flour);
             if (!cell[y+1][x+2].blocked())
-                cell[y+1][x+2].setMaterialType(MaterialType::Field);
+                cell[y+1][x+2].setMaterialType(MaterialType::Flour);
             if (!cell[y+2][x+1].blocked())
-                cell[y+2][x+1].setMaterialType(MaterialType::Field);
+                cell[y+2][x+1].setMaterialType(MaterialType::Flour);
             if (!cell[y+1][x].blocked())
-                cell[y+1][x].setMaterialType(MaterialType::Field);
+                cell[y+1][x].setMaterialType(MaterialType::Flour);
         }
         //--------------------------------------------------
     }	// end while (!rightRandom)

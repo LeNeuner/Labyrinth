@@ -4,7 +4,9 @@ PixmapKeeper::PixmapKeeper(int bigSize, int smallSize) :
     big(bigSize),
     small(smallSize)
 {
-    QPixmap *field          = new QPixmap(QLatin1String(":resources/images/field.png"));
+    QPixmap *none           = new QPixmap(QLatin1String(":resources/images/none.png"));
+    QPixmap *none_ver       = new QPixmap(QLatin1String(":resources/images/none_ver.png"));
+    QPixmap *none_gor       = new QPixmap(QLatin1String(":resources/images/none_gor.png"));
     QPixmap *flour          = new QPixmap(QLatin1String(":resources/images/flour.png"));
     QPixmap *flour_ver      = new QPixmap(QLatin1String(":resources/images/flour_ver.png"));
     QPixmap *flour_gor      = new QPixmap(QLatin1String(":resources/images/flour_gor.png"));
@@ -24,10 +26,10 @@ PixmapKeeper::PixmapKeeper(int bigSize, int smallSize) :
     QPixmap *hole_type2     = new QPixmap(QLatin1String(":resources/images/hole_type2.png"));
     QPixmap *hole_closed    = new QPixmap(QLatin1String(":resources/images/hole_closed.png"));
 
-    QPixmap scField         = field->scaled(        big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
-    QPixmap scField_ver     = field->scaled(        big,    small,  Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
-    QPixmap scField_gor     = field->scaled(        small,  big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
-    QPixmap scField_pillar  = field->scaled(        small,  small,  Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+    QPixmap scNone          = none->scaled(         big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+    QPixmap scNone_ver      = none_ver->scaled(     big,    small,  Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+    QPixmap scNone_gor      = none_gor->scaled(     small,  big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+    QPixmap scNone_pillar   = none->scaled(         small,  small,  Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scFlour         = flour->scaled(        big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scFlour_ver     = flour_ver->scaled(    small,  big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scFlour_gor     = flour_gor->scaled(    big,    small,  Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
@@ -47,10 +49,10 @@ PixmapKeeper::PixmapKeeper(int bigSize, int smallSize) :
     QPixmap scHoleType2     = hole_type2->scaled(   big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
     QPixmap scHoleClosed    = hole_closed->scaled(  big,    big,    Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
 
-    m_field                 = new QPixmap(scField);
-    m_field_ver             = new QPixmap(scField_ver);
-    m_field_gor             = new QPixmap(scField_gor);
-    m_field_pillar          = new QPixmap(scField_pillar);
+    m_none                  = new QPixmap(scNone);
+    m_none_ver              = new QPixmap(scNone_ver);
+    m_none_gor              = new QPixmap(scNone_gor);
+    m_none_pillar           = new QPixmap(scNone_pillar);
     m_flour                 = new QPixmap(scFlour);
     m_flour_ver             = new QPixmap(scFlour_ver);
     m_flour_gor             = new QPixmap(scFlour_gor);
@@ -112,10 +114,10 @@ PixmapKeeper::PixmapKeeper(int bigSize, int smallSize) :
 
 PixmapKeeper::~PixmapKeeper()
 {
-    delete m_field;
-    delete m_field_ver;
-    delete m_field_gor;
-    delete m_field_pillar;
+    delete m_none;
+    delete m_none_ver;
+    delete m_none_gor;
+    delete m_none_pillar;
     delete m_flour;
     delete m_flour_ver;
     delete m_flour_gor;
@@ -149,24 +151,24 @@ PixmapKeeper::~PixmapKeeper()
 }
 
 
-QPixmap *PixmapKeeper::field()
+QPixmap *PixmapKeeper::none()
 {
-    return m_field;
+    return m_none;
 }
 
-QPixmap *PixmapKeeper::field_ver()
+QPixmap *PixmapKeeper::none_ver()
 {
-    return m_field_ver;
+    return m_none_ver;
 }
 
-QPixmap *PixmapKeeper::field_gor()
+QPixmap *PixmapKeeper::none_gor()
 {
-    return m_field_gor;
+    return m_none_gor;
 }
 
-QPixmap *PixmapKeeper::field_pillar()
+QPixmap *PixmapKeeper::none_pillar()
 {
-    return m_field_pillar;
+    return m_none_pillar;
 }
 
 QPixmap *PixmapKeeper::flour()

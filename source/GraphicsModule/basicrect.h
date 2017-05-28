@@ -9,7 +9,7 @@ class BasicRect : public QObject, public QGraphicsItem, public QGraphicsLayoutIt
 {
     Q_OBJECT
 public:
-    BasicRect(QPixmap *pixmap, QSizeF size, QString text = "", QGraphicsItem *parent = 0);
+    BasicRect(QPixmap *pixmap, QSizeF size, double opac = 1.0, QString text = "", QGraphicsItem *parent = 0);
     ~BasicRect();
 
     // Inherited from QGraphicsLayoutItem
@@ -32,9 +32,10 @@ signals:
     void mousePressed();
 
 private:
-    QPixmap *m_pix = nullptr;
+    QPixmap *m_pix      = nullptr;
     QSizeF  m_size;
-    QString m_text = "";
+    double  m_opacity   = 1.0;
+    QString m_text      = "";
 
     bool    needPlayerDraw = false;
     QColor  color = Qt::red;

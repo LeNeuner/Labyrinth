@@ -60,7 +60,7 @@ void PlayerFieldInfo::createPlayerField(GameSettings *settings)
          }
      }
 
-     // открытие колонн
+     // открытие колон
      for (int y = 3; y < yNum-3; y+=2)
      {
          for (int x = 3; x < xNum-3; x+=2)

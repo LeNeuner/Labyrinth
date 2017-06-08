@@ -310,7 +310,7 @@ QGraphicsScene *LabyGraphicsScene::updatePlayerScene(GlobalModel *model)
     // установка поля
     QPixmap *bGrass  = new QPixmap(QLatin1String(":resources/images/bigGrass.jpg"));
     QPixmap bigGrass = bGrass->scaled(scene->width()+200, scene->height()+100, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
-    scene->setBackgroundBrush(Qt::darkGreen);
+    scene->setBackgroundBrush(Qt::white);   // darkGreen
 
     //--------------------------------------------------
     // отрисовка в соответствии с новой моделью

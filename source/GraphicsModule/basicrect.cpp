@@ -45,20 +45,34 @@ void BasicRect::paint(QPainter *painter,
     Q_UNUSED(widget);
     Q_UNUSED(option);
 
+    // основная форма ячеек сетки
     QRectF frame(QPointF(0,0), geometry().size());
     qreal w = m_size.width();
     qreal h = m_size.height();
 
+    // добавить задний фон ячейкам
+    painter->setBrush(QBrush(Qt::white));
+    painter->drawRect(frame);
+
+    // добавить основную текстуру ячейки
     QPointF pixpos = frame.center() - (QPointF(w, h) / 2);
     painter->drawPixmap(pixpos, *m_pix);
 
+    // добавить текст
     if (m_text != "")
         painter->drawText(frame.center(), m_text);
 
+    // добавить отрисовку игрока
     if (needPlayerDraw)
     {
         painter->setBrush(color);
         painter->setPen(color);
+        painter->drawEllipse(frame.center(), 5, 5);
+    }
+    else
+    {
+        painter->setBrush(QColor(0,0,0,0));
+        painter->setPen(QColor(0,0,0,0));
         painter->drawEllipse(frame.center(), 5, 5);
     }
 }

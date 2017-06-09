@@ -22,6 +22,9 @@ public:
     // инициализация новой игры
     bool newGameInitialization();
 
+    // игровой процесс
+    int gameProcess();
+
 private:
     GlobalModel         *glModel = nullptr;
 };

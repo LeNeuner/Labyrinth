@@ -24,9 +24,23 @@ bool EngineManager::newGameInitialization()
 {
     // FIELD GENERATION
 
-    // PLAYER CREATION
+    // PLAYERS CREATION
 
+    // CHOICE START PLAYER POSITION
+
+    // START GAME MODE
     return true;
+}
+
+//--------------------------------------------------
+// игровой процесс
+int EngineManager::gameProcess()
+{
+    // Для каждого игрока по кругу
+
+    // 1. Выбор хода (добавить действия (стрельба))
+    // 2. Проверка возможности (ответ системы)
+    // Выполнение хода или итерация 1
 }
 
 

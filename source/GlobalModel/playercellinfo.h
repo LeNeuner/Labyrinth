@@ -10,13 +10,6 @@ enum class CellState : unsigned int
     Closed
 };
 
-// подсвеченность (доступность для попытки хода)
-enum class CellShine : unsigned int
-{
-    Accessible,
-    Inaccessible
-};
-
 
 class GLOBALMODELSHARED_EXPORT PlayerCellInfo
 {
@@ -40,8 +33,6 @@ public:
     CellState cellState();
 
 
-
-
 //    void setBlocked(bool blocked);
 //    bool blocked();
 //    void setVisited(bool visited);
@@ -52,7 +43,7 @@ public:
 private:
 
     CellState     m_cellState;
-    CellShine     m_cellShine;
+//    MaterialType m_materialType;
 //    ObjectType   m_objectType;
 //    ObjectState  m_objectState;
 

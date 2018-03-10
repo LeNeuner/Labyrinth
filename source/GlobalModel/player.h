@@ -32,19 +32,13 @@ public:
     Player(int id, const QString &name, QColor color, Position pos);
     ~Player();
 
-    // установка/получение ID игрока
+    // установка/получение ID
     void setID(int id);
     int ID();
-    // установка/получение имени игрока
-    void setName(const QString &name);
-    QString name();
-    // установка/получение цвета игрока
-    void setColor(QColor color);
-    QColor color();
 
 private:
     int             m_ID            = -1;
-    QString         m_name          = QString("Player");
+    const QString   m_name          = QString("Player");
     QColor          m_playerColor   = Qt::black;
     PlayerState     m_playerState   = PlayerState::Healthy;
     PlayerControl   m_playerControl = PlayerControl::Human;

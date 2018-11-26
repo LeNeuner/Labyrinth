@@ -9,7 +9,11 @@
 // ADD: Определение платформы и ОС,
 // константы размеров окон в зависимости от платформ
 
-const int APP_WIDTH     = 1200;
-const int APP_HEIGHT    = 1000;
+//const int APP_WIDTH     = 1200;
+//const int APP_HEIGHT    = 1000;
+
+//macovka
+const int APP_WIDTH     = 1000;
+const int APP_HEIGHT    = 700;
 
 #endif // GLOBALS_H

@@ -9,8 +9,8 @@ class BasicRect : public QObject, public QGraphicsItem, public QGraphicsLayoutIt
 {
     Q_OBJECT
 public:
-    BasicRect(QPixmap *pixmap, QSizeF size, double opac = 1.0, QString text = "", QGraphicsItem *parent = 0);
-    ~BasicRect();
+    BasicRect(QPixmap *pixmap, QSizeF size, double opac = 1.0, QString text = "", QGraphicsItem *parent = nullptr);
+    ~BasicRect() Q_DECL_OVERRIDE;
 
     // Inherited from QGraphicsLayoutItem
     void setGeometry(const QRectF &geom) Q_DECL_OVERRIDE;
@@ -18,11 +18,11 @@ public:
 
     // Inherited from QGraphicsItem
     QRectF boundingRect() const Q_DECL_OVERRIDE;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0) Q_DECL_OVERRIDE;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) Q_DECL_OVERRIDE;
 
     // обработка событий нажатия клавишей мыши
-    void mousePressEvent(QGraphicsSceneMouseEvent *event);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    void mousePressEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
 
     // нарисовать/убрать игрока
     void addPlayer(QColor clr);

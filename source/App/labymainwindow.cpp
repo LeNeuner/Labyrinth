@@ -45,17 +45,18 @@ void LabyMainWindow::setMainMenu()
     // 1. MenuBar
     //--------------------------------------------------
     // создание новой игры
-    QAction* actNewGame = new QAction("start new game", 0);
+    QAction* actNewGame = new QAction("start new game", this);
+    QString txtNewGame  = QString(tr("Start new game"));
     actNewGame->setText("Новая игра");
     actNewGame->setShortcut(QKeySequence("CTRL+N"));
-    actNewGame->setToolTip("Начать новую игру");
-    actNewGame->setStatusTip("Начать новую игру");
-    actNewGame->setWhatsThis("Начать новую игру");
+    actNewGame->setToolTip(txtNewGame);
+    actNewGame->setStatusTip(txtNewGame);
+    actNewGame->setWhatsThis(txtNewGame);
     actNewGame->setIcon(QPixmap(":AppIcon"));
     connect(actNewGame, SIGNAL(triggered()), SLOT(createNewGame()));
 
     // настройки
-    QAction* actSettings = new QAction("open settings window", 0);
+    QAction* actSettings = new QAction("open settings window", this);
     actSettings->setText("Параметры");
     actSettings->setShortcut(QKeySequence("CTRL+P"));
     actSettings->setToolTip("Открыть окно настройки параметров");
@@ -65,7 +66,7 @@ void LabyMainWindow::setMainMenu()
     connect(actSettings, SIGNAL(triggered()), SLOT(settingsWindowOpen()));
 
     // Выход
-    QAction* actExit = new QAction("app exit", 0);
+    QAction* actExit = new QAction("app exit", this);
     actExit->setText("&Выход");
     actExit->setShortcut(QKeySequence("ALT+F4"));
     actExit->setToolTip("Выход из приложения");
@@ -171,7 +172,7 @@ void LabyMainWindow::createNewGame()
 // слот заглушка
 void LabyMainWindow::slotNoImp()
 {
-    QMessageBox::information(0, "Message", "Not implemented");
+    QMessageBox::information(this, "Message", "Not implemented");
 }
 
 // сообщение миганием о запуске приложения

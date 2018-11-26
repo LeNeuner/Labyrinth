@@ -18,8 +18,8 @@ const int       DEFAULT_ARSENAL_NUM         = 2;
 const int       DEFAULT_HOLE_TYPE_NUM       = 2;
 
 // GRAPHICS SETTINGS
-const int       DEFAULT_BIG_PICTURE_SIZE    = 60;
-const int       DEFAULT_SMALL_PICTURE_SIZE  = 10;
+const int       DEFAULT_BIG_PICTURE_SIZE    = 49;
+const int       DEFAULT_SMALL_PICTURE_SIZE  = 7;
 
 #endif // CONSTLIST_H
 

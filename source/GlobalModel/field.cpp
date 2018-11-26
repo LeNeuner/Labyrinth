@@ -665,7 +665,7 @@ void Field::setWallsPositions(GameSettings *settings, Position &pos, int &blocke
         //--------------------------------------------------
         if (!cell[y][x+1].blocked())
         {
-            if ( (rand() % 2) == 1)
+            if ( (rand() % 3) == 1)
             {
                 cell[y][x+1].setMaterialType(MaterialType::Wall);
                 currBlockWallNum++;

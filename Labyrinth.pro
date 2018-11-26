@@ -9,11 +9,21 @@
 TEMPLATE = subdirs
 CONFIG   += ordered
 
+macx: {
+SUBDIRS = \
+            source/GlobalModel     \
+            source/EngineModule    \
+            source/GraphicsModule  \
+            source/App
+}
+
+!macx: {
 SUBDIRS = \
             source\GlobalModel     \
             source\EngineModule    \
             source\GraphicsModule  \
             source\App
+}
 
 App.depends = GlobalModel EngineModule GraphicsModule
 GraphicsModule.depends = GlobalModel EngineModule

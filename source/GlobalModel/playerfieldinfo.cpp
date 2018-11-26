@@ -5,7 +5,9 @@
 
 #include <QDebug>
 #include <iostream>
+#if defined (win32)
 #include <windows.h>
+#endif
 
 
 PlayerFieldInfo::PlayerFieldInfo(QObject *parent) :

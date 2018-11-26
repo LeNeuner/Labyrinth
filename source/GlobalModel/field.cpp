@@ -5,7 +5,9 @@
 
 #include <QDebug>
 #include <iostream>
+#if defined (win32)
 #include <windows.h>
+#endif
 
 
 Field::Field(QObject *parent) :
@@ -106,7 +108,9 @@ void Field::createField(GameSettings *settings)
     }
 
     // обновление системы рандома
+#if defined (win32)
     srand(time(NULL));
+#endif
 
     // установка стартового состояния полей (трава, бетон)
     setBasicFields();

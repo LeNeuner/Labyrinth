@@ -2,6 +2,7 @@ PROJECT_ROOT_PATH = $${PWD}/
 
 win32: 	   OS_SUFFIX = win32
 linux-g++: OS_SUFFIX = linux
+macx:      OS_SUFFIX = macx
 
 CONFIG(debug, debug|release){
 	BUILD_FLAG = debug

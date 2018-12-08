@@ -9,7 +9,7 @@ class GLOBALMODELSHARED_EXPORT GameSettings : public QObject
 {
     Q_OBJECT
 public:
-    explicit GameSettings(QObject *parent = 0);
+    explicit GameSettings(QObject *parent = nullptr);
 
     void setFieldWidth(int width);
     int  fieldWidth();

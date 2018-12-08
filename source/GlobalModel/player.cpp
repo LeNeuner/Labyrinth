@@ -23,5 +23,5 @@ void Player::setID(int id)
 // получение ID игрока
 int Player::ID()
 {
-
+    return 0;
 }

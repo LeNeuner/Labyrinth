@@ -12,14 +12,14 @@ class GLOBALMODELSHARED_EXPORT GlobalModel : public QObject
 {
     Q_OBJECT
 public:
-    explicit GlobalModel(QObject *parent = 0);
+    explicit GlobalModel(QObject *parent = nullptr);
 
     // сбросить значения в дефолт для всех моделей
     void setDefaults();
 
-    Field*              fieldModel;
-    PlayerFieldInfo*    playerFieldModel;
-    GameSettings*       gameSettModel;
+    Field               *fieldModel;
+    PlayerFieldInfo     *playerFieldModel;
+    GameSettings        *gameSettModel;
 };
 
 #endif // GLOBALMODEL_H

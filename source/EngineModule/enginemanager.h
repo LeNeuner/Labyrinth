@@ -11,7 +11,7 @@ class ENGINEMODULESHARED_EXPORT EngineManager : public QObject
 {
     Q_OBJECT
 public:
-    explicit EngineManager(QObject *parent = 0);
+    explicit EngineManager(QObject *parent = nullptr);
     ~EngineManager();
 
     // установка модели настроек

@@ -12,7 +12,7 @@ class GRAPHICSMODULESHARED_EXPORT GraphicsManager : public QObject
 {
     Q_OBJECT
 public:
-    explicit GraphicsManager(QObject *parent = 0);
+    explicit GraphicsManager(QObject *parent = nullptr);
     ~GraphicsManager();
 
     // установка модели настроек

@@ -14,7 +14,7 @@ class GLOBALMODELSHARED_EXPORT PlayerFieldInfo : public QObject
 {
     Q_OBJECT
 public:
-    explicit PlayerFieldInfo(QObject *parent = 0);
+    explicit PlayerFieldInfo(QObject *parent = nullptr);
     ~PlayerFieldInfo();
 
     // установить поле в значения по умолчаниию

@@ -57,21 +57,23 @@ void LabyMainWindow::setMainMenu()
 
     // настройки
     QAction* actSettings = new QAction("open settings window", this);
+    QString txtSettings  = QString(tr("Open settings window"));
     actSettings->setText("Параметры");
     actSettings->setShortcut(QKeySequence("CTRL+P"));
-    actSettings->setToolTip("Открыть окно настройки параметров");
-    actSettings->setStatusTip("Открыть окно настройки параметров");
-    actSettings->setWhatsThis("Открыть окно настройки параметров");
+    actSettings->setToolTip(txtSettings);
+    actSettings->setStatusTip(txtSettings);
+    actSettings->setWhatsThis(txtSettings);
     actSettings->setIcon(QPixmap(":SettingsIcon"));
     connect(actSettings, SIGNAL(triggered()), SLOT(settingsWindowOpen()));
 
     // Выход
     QAction* actExit = new QAction("app exit", this);
+    QString txtExit  = QString(tr("Exit from application"));
     actExit->setText("&Выход");
     actExit->setShortcut(QKeySequence("ALT+F4"));
-    actExit->setToolTip("Выход из приложения");
-    actExit->setStatusTip("Выход из приложения");
-    actExit->setWhatsThis("Выход из приложения");
+    actExit->setToolTip(txtExit);
+    actExit->setStatusTip(txtExit);
+    actExit->setWhatsThis(txtExit);
     actExit->setIcon(QPixmap(":ExitIcon"));
     connect(actExit, SIGNAL(triggered()), this, SLOT(close()));
 
@@ -85,17 +87,18 @@ void LabyMainWindow::setMainMenu()
 
 
     // Справка
-    QAction* actReference = new QAction("open Reference", 0);
+    QAction* actReference = new QAction("open Reference", this);
+    QString txtReference  = QString(tr("Info about program"));
     actReference->setText("Справка");
     actReference->setShortcut(QKeySequence("F1"));
-    actReference->setToolTip("Информация о программе");
-    actReference->setStatusTip("Информация о программе");
-    actReference->setWhatsThis("Информация о программе");
+    actReference->setToolTip(txtReference);
+    actReference->setStatusTip(txtReference);
+    actReference->setWhatsThis(txtReference);
     connect(actReference, SIGNAL(triggered()), SLOT(aboutWindowOpen()));
     this->menuBar()->addAction(actReference);
 
     // Дополнительная кнопка выхода
-    QAction* actAddExit = new QAction("exit", 0);
+    QAction* actAddExit = new QAction("exit", this);
     actAddExit->setStatusTip("Выход из приложения");
     actAddExit->setWhatsThis("Выход из приложения");
     actAddExit->setIcon(QPixmap(":ExitIcon"));

@@ -18,7 +18,7 @@ class SettingsWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit SettingsWindow(QWidget *parent = 0);
+    explicit SettingsWindow(QWidget *parent = nullptr);
     ~SettingsWindow();
 
     // установка модели настроек

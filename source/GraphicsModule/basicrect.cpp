@@ -15,7 +15,10 @@ BasicRect::BasicRect(QPixmap *pixmap, QSizeF size, double opac, QString text,
     m_size.setWidth(size.width());
     m_size.setHeight(size.height());
 
-    QPixmap image = pixmap->scaled(size.width(), size.height(), Qt::IgnoreAspectRatio, Qt::FastTransformation );
+    int w = static_cast<int>(size.width());
+    int h = static_cast<int>(size.height());
+
+    QPixmap image = pixmap->scaled(w, h, Qt::IgnoreAspectRatio, Qt::FastTransformation );
 //    QPixmap* test = new QPixmap(image);
 
 //    m_pix = test;

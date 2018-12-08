@@ -25,7 +25,7 @@ class LabyMainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit LabyMainWindow(QWidget *parent = 0);
+    explicit LabyMainWindow(QWidget *parent = nullptr);
     ~LabyMainWindow();
 
 private slots:

@@ -14,6 +14,7 @@
 #include "globalmodel.h"
 #include "settingswindow.h"
 #include "graphicsmanager.h"
+#include "enginemanager.h"
 
 
 namespace Ui {
@@ -53,6 +54,7 @@ private:
     GlobalModel         *glModel;           // глобальная модель параметров
     SettingsWindow      *settWind;          // окно управления настройками
     GraphicsManager     *graphManager;      // класс управления графикой
+    EngineManager       *engineManager;     // класс движка (управления игрой)
 
     // установить основное меню приложения
     void setMainMenu();

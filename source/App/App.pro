@@ -10,6 +10,7 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG          += c++11
+CONFIG          += sdk_no_version_check
 QMAKE_CXXFLAGS  += -std=c++11
 
 TARGET = Labyrinth
@@ -31,13 +32,16 @@ FORMS    += labymainwindow.ui   \
             settingswindow.ui
 
 
-INCLUDEPATH +=  "../GraphicsModule" \
-                "../GlobalModel"
+INCLUDEPATH +=  "../GlobalModel"    \
+                "../GraphicsModule" \
+                "../EngineModule"
 
 RESOURCES   += icons/iconres.qrc
 RC_FILE     += icons/mainiconres.rc
 
 DESTDIR = $${BIN_PATH}/
 
-LIBS += -lGraphicsModule$${LIB_SUFFIX} \
-       	-lGlobalModel$${LIB_SUFFIX}
+LIBS += -lGlobalModel$${LIB_SUFFIX}     \
+        -lGraphicsModule$${LIB_SUFFIX}  \
+        -lEngineModule$${LIB_SUFFIX}
+

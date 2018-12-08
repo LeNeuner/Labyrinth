@@ -108,9 +108,7 @@ void Field::createField(GameSettings *settings)
     }
 
     // обновление системы рандома
-#if defined (win32)
-    srand(time(NULL));
-#endif
+    srand(static_cast<unsigned int>(time(nullptr)));
 
     // установка стартового состояния полей (трава, бетон)
     setBasicFields();
@@ -213,6 +211,19 @@ void Field::checkCell(int y, int x, int &visitedCellCount)
     if ((cell[y+1][x].materialType() != MaterialType::Wall) &&
         (!cell[y+2][x].blocked()) && (!cell[y+2][x].visited()))
         checkCell(y+2, x, visitedCellCount);
+}
+
+// определение выпадения по заданной вероятности
+bool Field::isValueDropped(unsigned int &probability)
+{
+    if (probability > 100)
+        probability = 100;
+
+    unsigned int val = rand() % 100;
+    if (val < probability)
+        return true;
+    else
+        return false;
 }
 //--------------------------------------------------------------------------------
 
@@ -363,7 +374,7 @@ void Field::setRealTreasures(GameSettings *settings, int &blockedCellsNum)
 
     Position currPos;
     currPos.y = (rand() % settings->fieldHeight() + 1) * 2;
-    currPos.x = (rand() % settings->fieldWidth() + 1) * 2;
+    currPos.x = (rand() % settings->fieldWidth()  + 1) * 2;
     cell[currPos.y][currPos.x].setBlocked(true);
     cell[currPos.y][currPos.x].setObjectType(ObjectType::RealTreasure);
     usedPos.push_back(currPos);
@@ -373,11 +384,11 @@ void Field::setRealTreasures(GameSettings *settings, int &blockedCellsNum)
     while (realTreasureNum != settings->realTreasureNum())
     {
         Position pos;
-        srand(time(NULL));
+        srand(static_cast<unsigned int>(time(nullptr)));
         pos.y = (rand() % settings->fieldHeight() + 1) * 2;
-        pos.x = (rand() % settings->fieldWidth() + 1) * 2;
+        pos.x = (rand() % settings->fieldWidth()  + 1) * 2;
 
-        for (int i = 0; i < (int)usedPos.size(); i++)
+        for (size_t i = 0; i < usedPos.size(); ++i)
         {
             // новый рандом при совпадении с элеменами в списке
             if ((pos.y == usedPos[i].y) && (pos.x == usedPos[i].x))
@@ -386,7 +397,7 @@ void Field::setRealTreasures(GameSettings *settings, int &blockedCellsNum)
             }
 
             // если не совпало со всеми текущими элементами
-            if (i == (int)usedPos.size()-1)
+            if (i == usedPos.size() - 1)
             {
                 cell[pos.y][pos.x].setBlocked(true);
                 blockedCellsNum++;
@@ -417,9 +428,9 @@ void Field::setFakeTreasures(GameSettings *settings, int &blockedCellsNum)
     {
         Position pos;
         pos.y = (rand() % settings->fieldHeight() + 1) * 2;
-        pos.x = (rand() % settings->fieldWidth() + 1) * 2;
+        pos.x = (rand() % settings->fieldWidth()  + 1) * 2;
 
-        for (int i = 0; i < (int)usedPos.size(); i++)
+        for (size_t i = 0; i < usedPos.size(); ++i)
         {
             // новый рандом при совпадении с элеменами в списке
             if ((pos.y == usedPos[i].y) && (pos.x == usedPos[i].x))
@@ -428,7 +439,7 @@ void Field::setFakeTreasures(GameSettings *settings, int &blockedCellsNum)
             }
 
             // если не совпало со всеми текущими элементами
-            if (i == (int)usedPos.size()-1)
+            if (i == usedPos.size()-1)
             {
                 cell[pos.y][pos.x].setBlocked(true);
                 blockedCellsNum++;
@@ -454,7 +465,7 @@ void Field::setFakeTreasures(GameSettings *settings, int &blockedCellsNum)
 // установка стен кладов
 void Field::setTreasuresWalls()
 {
-    for (int i = 0; i < (int)usedPos.size(); i++)
+    for (size_t i = 0; i < usedPos.size(); ++i)
     {
         int y = usedPos[i].y;
         int x = usedPos[i].x;
@@ -494,9 +505,9 @@ void Field::setArsenals(GameSettings *settings, int &blockedCellsNum)
     {
         Position pos;
         pos.y = (rand() % settings->fieldHeight() + 1) * 2;
-        pos.x = (rand() % settings->fieldWidth() + 1) * 2;
+        pos.x = (rand() % settings->fieldWidth()  + 1) * 2;
 
-        for (int i = 0; i < (int)usedPos.size(); i++)
+        for (size_t i = 0; i < usedPos.size(); ++i)
         {
             // новый рандом при совпадении с элеменами в списке
             if ((pos.y == usedPos[i].y) && (pos.x == usedPos[i].x))
@@ -505,7 +516,7 @@ void Field::setArsenals(GameSettings *settings, int &blockedCellsNum)
             }
 
             // если не совпало со всеми текущими элементами
-            if (i == (int)usedPos.size()-1)
+            if (i == usedPos.size()-1)
             {
                 cell[pos.y][pos.x].setBlocked(true);
                 blockedCellsNum++;
@@ -531,7 +542,7 @@ void Field::setArsenals(GameSettings *settings, int &blockedCellsNum)
 // установка стен арсеналов
 void Field::setArsenalsWalls()
 {
-    for (int i = 0; i < (int)usedPos.size(); i++)
+    for (size_t i = 0; i < usedPos.size(); ++i)
     {
         int y = usedPos[i].y;
         int x = usedPos[i].x;
@@ -656,6 +667,7 @@ void Field::setWallsPositions(GameSettings *settings, Position &pos, int &blocke
     int x = pos.x;
 
     int rightRandom = false;
+    unsigned int wallProb = 10;
     while (!rightRandom)
     {
         int currBlockWallNum = 0;
@@ -665,7 +677,7 @@ void Field::setWallsPositions(GameSettings *settings, Position &pos, int &blocke
         //--------------------------------------------------
         if (!cell[y][x+1].blocked())
         {
-            if ( (rand() % 3) == 1)
+            if (isValueDropped(wallProb))
             {
                 cell[y][x+1].setMaterialType(MaterialType::Wall);
                 currBlockWallNum++;
@@ -698,7 +710,7 @@ void Field::setWallsPositions(GameSettings *settings, Position &pos, int &blocke
         //--------------------------------------------------
         if (!cell[y+1][x+2].blocked())
         {
-            if ( (rand() % 2) == 1)
+            if (isValueDropped(wallProb))
             {
                 cell[y+1][x+2].setMaterialType(MaterialType::Wall);
                 currBlockWallNum++;
@@ -722,7 +734,7 @@ void Field::setWallsPositions(GameSettings *settings, Position &pos, int &blocke
         //--------------------------------------------------
         if (!cell[y+2][x+1].blocked())
         {
-            if ( (rand() % 2) == 1)
+            if (isValueDropped(wallProb))
             {
                 cell[y+2][x+1].setMaterialType(MaterialType::Wall);    
                 currBlockWallNum++;
@@ -746,7 +758,7 @@ void Field::setWallsPositions(GameSettings *settings, Position &pos, int &blocke
         //--------------------------------------------------
         if (!cell[y+1][x].blocked())
         {
-            if ( (rand() % 2) == 1)
+            if (isValueDropped(wallProb))
             {
                 cell[y+1][x].setMaterialType(MaterialType::Wall);
                 currBlockWallNum++;
@@ -928,12 +940,12 @@ void Field::setHoles(GameSettings *settings)
     while (holeNum != 2)
     {
         int y = (rand() % settings->fieldHeight() + 1) * 2;
-        int x = (rand() % settings->fieldWidth() + 1) * 2;
+        int x = (rand() % settings->fieldWidth()  + 1) * 2;
 
         if ((cell[y][x].objectType() != ObjectType::RealTreasure) &&
             (cell[y][x].objectType() != ObjectType::FakeTreasure) &&
-            (cell[y][x].objectType() != ObjectType::Arsenal) &&
-            (cell[y][x].objectType() != ObjectType::HoleTypeI) &&
+            (cell[y][x].objectType() != ObjectType::Arsenal)      &&
+            (cell[y][x].objectType() != ObjectType::HoleTypeI)    &&
             (cell[y][x].objectType() != ObjectType::HoleTypeII))
         {
             holeNum++;
@@ -951,15 +963,15 @@ void Field::setHoles(GameSettings *settings)
         while (holeNum != 3)
         {
             int y = (rand() % settings->fieldHeight() + 1) * 2;
-            int x = (rand() % settings->fieldWidth() + 1) * 2;
+            int x = (rand() % settings->fieldWidth()  + 1) * 2;
 
             if ((cell[y][x].objectType() != ObjectType::RealTreasure) &&
                 (cell[y][x].objectType() != ObjectType::FakeTreasure) &&
-                (cell[y][x].objectType() != ObjectType::Arsenal) &&
-                (cell[y][x].objectType() != ObjectType::HoleTypeI) &&
-                (cell[y][x].objectType() != ObjectType::HoleTypeII) &&
-                (cell[y][x].objectType() != ObjectType::HoleTypeA) &&
-                (cell[y][x].objectType() != ObjectType::HoleTypeB) &&
+                (cell[y][x].objectType() != ObjectType::Arsenal)      &&
+                (cell[y][x].objectType() != ObjectType::HoleTypeI)    &&
+                (cell[y][x].objectType() != ObjectType::HoleTypeII)   &&
+                (cell[y][x].objectType() != ObjectType::HoleTypeA)    &&
+                (cell[y][x].objectType() != ObjectType::HoleTypeB)    &&
                 (cell[y][x].objectType() != ObjectType::HoleTypeC))
             {
                 holeNum++;

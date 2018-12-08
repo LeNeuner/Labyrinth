@@ -14,7 +14,7 @@ class GLOBALMODELSHARED_EXPORT Field : public QObject
 {
     Q_OBJECT
 public:
-    explicit Field(QObject *parent = 0);
+    explicit Field(QObject *parent = nullptr);
     ~Field();
 
     // установить поле в значения по умолчаниию
@@ -57,6 +57,8 @@ private:
     bool checkFreeAccess(GameSettings *settings, int blockedCellsNum);
     // проверка клетки на посещенность
     void checkCell(int y, int x, int &visitedCellCount);
+    // определение выпадения по заданной вероятности
+    bool isValueDropped(unsigned int &probability);
 
     // установка стартового состояния полей (трава, бетон)
     void setBasicFields();

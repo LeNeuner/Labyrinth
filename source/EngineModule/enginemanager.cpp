@@ -23,8 +23,17 @@ EngineManager::~EngineManager()
 bool EngineManager::newGameInitialization()
 {
     // FIELD GENERATION
+    glModel->fieldModel->createField(glModel->gameSettModel);
+    glModel->playerFieldModel->createPlayerField(glModel->gameSettModel);
+    emit needSceneUpdate();
 
     // PLAYER CREATION
+
+    // START GAME
+//    while (true)
+//    {
+//        // game circle
+//    }
 
     return true;
 }

@@ -11,7 +11,8 @@ LabyMainWindow::LabyMainWindow(QWidget *parent) :
     ui(new Ui::LabyMainWindow),
     glModel(new GlobalModel(this)),
     settWind(new SettingsWindow(this)),
-    graphManager(new GraphicsManager(this))
+    graphManager(new GraphicsManager(this)),
+    engineManager(new EngineManager(this))
 {
     ui->setupUi(this);
 
@@ -26,6 +27,9 @@ LabyMainWindow::LabyMainWindow(QWidget *parent) :
 
     // графическое построение поля
     ui->gvSecond->setScene(graphManager->createGraphicsScene());
+
+    // инициализировать соединений
+    initConnects();
 }
 
 LabyMainWindow::~LabyMainWindow()
@@ -34,6 +38,7 @@ LabyMainWindow::~LabyMainWindow()
     delete glModel;
     delete settWind;
     delete graphManager;
+    delete engineManager;
 }
 
 //--------------------------------------------------
@@ -118,6 +123,7 @@ void LabyMainWindow::setGlobalParamModel()
     glModel->setDefaults();
     settWind->setGlobalModel(glModel);
     graphManager->setGlobalModel(glModel);
+    engineManager->setGlobalModel(glModel);
 
     // модель из файла
 //    QString folder = QCoreApplication::applicationDirPath();
@@ -126,7 +132,16 @@ void LabyMainWindow::setGlobalParamModel()
 //    if (!successSettLoad)
 //        glModel->setDefaults();
 
-//    commandListChanged();
+    //    commandListChanged();
+}
+
+//--------------------------------------------------
+// инициализировать соединений
+//--------------------------------------------------
+void LabyMainWindow::initConnects()
+{
+    connect(this->engineManager, SIGNAL(needSceneUpdate()),
+            this, SLOT(createNewGame()));
 }
 //--------------------------------------------------
 
@@ -157,9 +172,6 @@ void LabyMainWindow::aboutWindowOpen()
 
 void LabyMainWindow::createNewGame()
 {
-    glModel->fieldModel->createField(glModel->gameSettModel);
-    glModel->playerFieldModel->createPlayerField(glModel->gameSettModel);
-
     ui->gvSecond->setScene(graphManager->updateGraphicsScene());
     ui->gvSecond->update();
 
@@ -194,14 +206,8 @@ void LabyMainWindow::keyPressEvent(QKeyEvent *event)
 //--------------------------------------------------
 
 
-
-
 // временная генерация (убрать)
 void LabyMainWindow::on_bGenerate_clicked()
 {
-    createNewGame();
-//    glModel->fieldModel->createField(glModel->gameSettModel);
-
-//    ui->gvLaby->setScene(graphManager->updateGraphicsScene());
-//    ui->gvLaby->update();
+    engineManager->newGameInitialization();
 }

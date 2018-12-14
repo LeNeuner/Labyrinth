@@ -22,6 +22,9 @@ public:
     // инициализация новой игры
     bool newGameInitialization();
 
+signals:
+    void needSceneUpdate();
+
 private:
     GlobalModel         *glModel = nullptr;
 };

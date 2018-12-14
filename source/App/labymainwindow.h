@@ -10,6 +10,7 @@
 #include <QMessageBox>
 #include <QTextEdit>
 #include <QPushButton>
+#include <QObject>
 
 #include "globalmodel.h"
 #include "settingswindow.h"
@@ -60,6 +61,8 @@ private:
     void setMainMenu();
     // установить основное меню приложения
     void setGlobalParamModel();
+    // инициализировать соединений
+    void initConnects();
 };
 
 #endif // LABYMAINWINDOW_H

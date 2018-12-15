@@ -310,7 +310,7 @@ QGraphicsScene *LabyGraphicsScene::updatePlayerScene(GlobalModel *model)
     // установка поля
     QPixmap *bGrass  = new QPixmap(QLatin1String(":resources/images/bigGrass.jpg"));
     QPixmap bigGrass = bGrass->scaled(scene->width()+200, scene->height()+100, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
-    scene->setBackgroundBrush(Qt::darkGreen);
+    scene->setBackgroundBrush(Qt::white);
 
     //--------------------------------------------------
     // отрисовка в соответствии с новой моделью
@@ -361,6 +361,7 @@ QGraphicsScene *LabyGraphicsScene::updatePlayerScene(GlobalModel *model)
                 cellSize = QSizeF(small, small);
 
             // отрисовка закрытых и открытых для пользователя ячеек
+            double closedOpacity = 0.3;
             if (model->playerFieldModel->playerCell[y][x].cellState() == CellState::Closed)
             {
                 if (model->fieldModel->cell[y][x].materialType() == MaterialType::Grass)
@@ -373,7 +374,7 @@ QGraphicsScene *LabyGraphicsScene::updatePlayerScene(GlobalModel *model)
                         currPixmap = pixmaps->concrete_gor();
                     else if (model->fieldModel->cell[y][x].formType() == FormType::Pillar)
                         currPixmap = pixmaps->concrete_pillar();
-                    currOpacity = 0.7;
+                    currOpacity = closedOpacity;
                 }
                 else if (model->fieldModel->cell[y][x].materialType() == MaterialType::Exit)
                 {
@@ -381,7 +382,7 @@ QGraphicsScene *LabyGraphicsScene::updatePlayerScene(GlobalModel *model)
                         currPixmap = pixmaps->concrete_ver();
                     else if (model->fieldModel->cell[y][x].formType() == FormType::Gorizontal)
                         currPixmap = pixmaps->concrete_gor();
-                    currOpacity = 0.7;
+                    currOpacity = closedOpacity;
                 }
                 else if ((model->fieldModel->cell[y][x].materialType() == MaterialType::Flour) ||
                          (model->fieldModel->cell[y][x].materialType() == MaterialType::Wall))
@@ -392,7 +393,7 @@ QGraphicsScene *LabyGraphicsScene::updatePlayerScene(GlobalModel *model)
                         currPixmap = pixmaps->flour_gor();
                     else
                         currPixmap = pixmaps->flour();
-                    currOpacity = 0.7;
+                    currOpacity = closedOpacity;
                 }
                 else if ((model->fieldModel->cell[y][x].materialType() == MaterialType::PathRight) ||
                          (model->fieldModel->cell[y][x].materialType() == MaterialType::PathLeft) ||

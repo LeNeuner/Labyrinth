@@ -24,7 +24,8 @@ bool EngineManager::newGameInitialization()
 {
     // FIELD GENERATION
     glModel->fieldModel->createField(glModel->gameSettModel);
-    glModel->playerFieldModel->createPlayerField(glModel->gameSettModel);
+    glModel->playerFieldModel->createField(glModel->gameSettModel);
+//    glModel->playerFieldModel->createPlayerField(glModel->gameSettModel);
     emit needSceneUpdate();
 
     // PLAYER CREATION

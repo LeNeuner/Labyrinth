@@ -79,8 +79,6 @@ public:
     void setClickabilityState(bool isClickable);
     bool clickable() const;
 
-    void cellClicked(int x, int y);
-
     void setBlocked(bool blocked);
     bool blocked();
     void setVisited(bool visited);

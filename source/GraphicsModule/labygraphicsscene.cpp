@@ -338,11 +338,11 @@ QGraphicsScene *LabyGraphicsScene::updatePlayerScene(GlobalModel *model)
             QSizeF currCellSize = getCellSize(model->fieldModel->cell[y][x]);
 
             // set opacity for cells
-            double currOpacity  = getOpacity(model->playerFieldModel->playerCell[y][x]);
+            double currOpacity  = getOpacity(model->playerFieldModel->cell[y][x]);
 
             // draw open and closed cells
             QPixmap *currPixmap = m_pixmaps->none();
-            if (model->playerFieldModel->playerCell[y][x].visible())
+            if (model->playerFieldModel->cell[y][x].visible())
                 currPixmap = getRealPixmap(model->fieldModel->cell[y][x]);
             else
                 currPixmap = getPlayersPixmap(model->fieldModel->cell[y][x]);
@@ -356,7 +356,10 @@ QGraphicsScene *LabyGraphicsScene::updatePlayerScene(GlobalModel *model)
             connect(item, &BasicRect::mousePressed,
                     [x, y, model]()mutable->void
                     {
-                        model->fieldModel->cell[y][x].cellClicked(x, y);
+                        model->fieldModel->openCell(x,y);
+                        model->playerFieldModel->openCell(x,y);
+//                        model->fieldModel->cell[y][x].cellClicked(x, y);
+//                        model->playerFieldModel->cell[y][x].cellClicked(x, y);
                     });
         }
     }
@@ -413,7 +416,7 @@ QSizeF LabyGraphicsScene::getCellSize(const Cell &cell)
 }
 
 /// get current cell opacity
-double LabyGraphicsScene::getOpacity(const PlayerCellInfo &cell)
+double LabyGraphicsScene::getOpacity(const Cell &cell)
 {
     double opacity;
     if (cell.visible())
@@ -469,6 +472,15 @@ QPixmap *LabyGraphicsScene::getRealPixmap(const Cell &cell)
         else
             currPixmap = m_pixmaps->flour();
     }
+    else if (cell.materialType() == MaterialType::Flour)
+    {
+        if (cell.formType() == FormType::Vertical)
+            currPixmap = m_pixmaps->flour_ver();
+        else if (cell.formType() == FormType::Gorizontal)
+            currPixmap = m_pixmaps->flour_gor();
+        else
+            currPixmap = m_pixmaps->flour();
+    }
     else if (cell.materialType() == MaterialType::PathRight)
         currPixmap = m_pixmaps->path_right();
     else if (cell.materialType() == MaterialType::PathLeft)
@@ -479,6 +491,25 @@ QPixmap *LabyGraphicsScene::getRealPixmap(const Cell &cell)
         currPixmap = m_pixmaps->path_bottom();
     else
         currPixmap = m_pixmaps->grass();
+
+    // add objects
+    // тип объекта в поле
+    if ((cell.objectType() == ObjectType::RealTreasure) ||
+        (cell.objectType() == ObjectType::FakeTreasure))
+        currPixmap = m_pixmaps->treasure();
+    else if (cell.objectType() == ObjectType::Arsenal)
+        currPixmap = m_pixmaps->arsenal();
+    else if ((cell.objectType() == ObjectType::HoleTypeI) ||
+             (cell.objectType() == ObjectType::HoleTypeII))
+    {
+        currPixmap = m_pixmaps->hole_closed();
+    }
+    else if ((cell.objectType() == ObjectType::HoleTypeA) ||
+             (cell.objectType() == ObjectType::HoleTypeB) ||
+             (cell.objectType() == ObjectType::HoleTypeC))
+    {
+        currPixmap = m_pixmaps->hole_closed();
+    }
     return currPixmap;
 }
 

@@ -77,13 +77,6 @@ bool Cell::clickable() const
 }
 
 
-void Cell::cellClicked(int x, int y)
-{
-    qDebug() << "Eprst: " << x << y;
-}
-
-
-
 void Cell::setBlocked(bool blocked)
 {
     testAlgBlocked = blocked;

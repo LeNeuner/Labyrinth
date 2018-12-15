@@ -18,7 +18,8 @@ public:
     void setDefaults();
 
     Field               *fieldModel;
-    PlayerFieldInfo     *playerFieldModel;
+    Field               *playerFieldModel;
+//    PlayerFieldInfo     *playerFieldModel;
     GameSettings        *gameSettModel;
 };
 

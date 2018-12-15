@@ -13,8 +13,6 @@ GraphicsManager::GraphicsManager(QObject *parent) :
     QObject(parent)
 //    mreader(new TcpIO::ModbusIO()),
 {
-    connect(lGraphicsPlayerScene, SIGNAL(cellClicked(Position)),
-            this, SIGNAL(cellClicked(Position)));
 }
 
 GraphicsManager::~GraphicsManager()

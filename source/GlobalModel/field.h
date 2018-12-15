@@ -26,12 +26,20 @@ public:
     // создание информации о поле для игрока
     void createStartFieldInfo();
 
+    // открыть все поле
+    void setFieldsVisibility(bool isVisible);
+    void setFieldsClickability(bool isClickable);
+    void openCell(int x, int y);
+
     //  доступ к размерам поля
     int getFullWidth() const;
     int getFullHeight() const;
 
     // массив ячеек игрового поля
     Cell **cell;
+
+signals:
+    void fieldStateUpdated();
 
 private:
 

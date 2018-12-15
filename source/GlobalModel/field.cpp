@@ -165,7 +165,7 @@ void Field::createStartFieldInfo()
         }
     }
 
-    // открытие колон
+    // открытие всех колон
     for (int y = 1; y < yNum-1; y+=2)
     {
         for (int x = 1; x < xNum-1; x+=2)
@@ -182,6 +182,48 @@ void Field::createStartFieldInfo()
              cell[y][x].setClickabilityState(true);
          }
      }
+}
+
+// set all fields visibility
+void Field::setFieldsVisibility(bool isVisible)
+{
+    for (int y = 0; y < yNum; y+=1)
+    {
+        for (int x = 0; x < xNum; x+=1)
+        {
+            cell[y][x].setVisibilityState(isVisible);
+        }
+    }
+}
+
+// set all fields clickability
+void Field::setFieldsClickability(bool isClickable)
+{
+    for (int y = 0; y < yNum; y+=1)
+    {
+        for (int x = 0; x < xNum; x+=1)
+        {
+            cell[y][x].setClickabilityState(isClickable);
+        }
+    }
+}
+
+// open cell
+void Field::openCell(int x, int y)
+{
+    qDebug() << "Cell: " << x << y;
+    cell[y][x].setVisibilityState(true);
+
+    if ((cell[y][x].objectType() == ObjectType::RealTreasure) ||
+        (cell[y][x].objectType() == ObjectType::FakeTreasure))
+    {
+        cell[y-1][x].setVisibilityState(true);
+        cell[y][x-1].setVisibilityState(true);
+        cell[y+1][x].setVisibilityState(true);
+        cell[y][x+1].setVisibilityState(true);
+    }
+
+    emit fieldStateUpdated();
 }
 
 int Field::getFullWidth() const

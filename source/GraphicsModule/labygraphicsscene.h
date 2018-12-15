@@ -31,7 +31,7 @@ private:
 
     void    clearScene(GlobalModel* model);
     QSizeF  getCellSize(const Cell &cell);
-    double  getOpacity(const PlayerCellInfo &cell);
+    double  getOpacity(const Cell &cell);
 
     QPixmap *getRealPixmap(const Cell &cell);
     QPixmap *getPlayersPixmap(const Cell &cell);

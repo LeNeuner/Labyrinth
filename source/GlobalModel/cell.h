@@ -63,17 +63,23 @@ public:
                       ObjectState oState);
 
     void setFormType(FormType type);
-    FormType formType();
+    FormType formType() const;
 
     void setMaterialType(MaterialType type);
-    MaterialType materialType();
+    MaterialType materialType() const;
 
     void setObjectType(ObjectType type);
-    ObjectType objectType();
+    ObjectType objectType() const;
 
     void setObjectState(ObjectState state);
-    ObjectState objectState();
+    ObjectState objectState() const;
 
+    void setVisibilityState(bool isVisible);
+    bool visible() const;
+    void setClickabilityState(bool isClickable);
+    bool clickable() const;
+
+    void cellClicked(int x, int y);
 
     void setBlocked(bool blocked);
     bool blocked();
@@ -89,8 +95,11 @@ private:
     ObjectType   m_objectType;
     ObjectState  m_objectState;
 
-    bool testAlgBlocked = true;
-    bool testAlgVisited = false;
+    bool m_isVisibleCell    = false;
+    bool m_isClickableCell  = false;
+
+    bool testAlgBlocked     = true;
+    bool testAlgVisited     = false;
 };
 
 #endif // CELL_H

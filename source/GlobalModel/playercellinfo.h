@@ -40,9 +40,9 @@ public:
 
 
     void setVisibilityState(bool isVisible);
-    bool visible();
+    bool visible() const;
     void setClickabilityState(bool isClickable);
-    bool clickable();
+    bool clickable() const;
 
 private:
 

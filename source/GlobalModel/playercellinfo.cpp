@@ -15,7 +15,7 @@ void PlayerCellInfo::setVisibilityState(bool isVisible)
     m_isVisibleCell = isVisible;
 }
 
-bool PlayerCellInfo::visible()
+bool PlayerCellInfo::visible() const
 {
     return  m_isVisibleCell;
 }
@@ -25,7 +25,7 @@ void PlayerCellInfo::setClickabilityState(bool isClickable)
     m_isClickableCell = isClickable;
 }
 
-bool PlayerCellInfo::clickable()
+bool PlayerCellInfo::clickable() const
 {
     return m_isClickableCell;
 }

@@ -28,7 +28,6 @@ public:
     QGraphicsScene *createPlayerGraphicsScene();
     QGraphicsScene *updatePlayerGraphicsScene();
 
-
 private:
     GlobalModel         *glModel                = nullptr;
     LabyGraphicsScene   *lGraphicsScene         = nullptr;

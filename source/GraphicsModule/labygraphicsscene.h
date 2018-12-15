@@ -12,9 +12,8 @@
 #include "basicrect.h"
 #include "pixmapkeeper.h"
 
-class GRAPHICSMODULESHARED_EXPORT LabyGraphicsScene : /*public QObject,*/ public QGraphicsScene
+class GRAPHICSMODULESHARED_EXPORT LabyGraphicsScene : public QGraphicsScene
 {
-//    Q_OBJECT
 public:
     LabyGraphicsScene(GlobalModel* model);
     ~LabyGraphicsScene();
@@ -25,13 +24,17 @@ public:
 
     QGraphicsScene *updatePlayerScene(GlobalModel* model);
 
-signals:
-    void HZ();
-
 private:
-    QGraphicsScene          *scene   = nullptr;
-    QGraphicsGridLayout     *grid    = nullptr;
-    PixmapKeeper            *pixmaps = nullptr;
+    QGraphicsScene          *m_scene   = nullptr;
+    QGraphicsGridLayout     *m_grid    = nullptr;
+    PixmapKeeper            *m_pixmaps = nullptr;
+
+    void    clearScene(GlobalModel* model);
+    QSizeF  getCellSize(const Cell &cell);
+    double  getOpacity(const PlayerCellInfo &cell);
+
+    QPixmap *getRealPixmap(const Cell &cell);
+    QPixmap *getPlayersPixmap(const Cell &cell);
 };
 
 #endif // LABYGRAPHICSSCENE_H

@@ -23,13 +23,12 @@ public:
     // создание игрового поля
     void createField(GameSettings *settings);
 
+    // создание информации о поле для игрока
+    void createStartFieldInfo();
 
-    int getFullWidth(){
-        return xNum;
-    }
-    int getFullHeight(){
-        return yNum;
-    }
+    //  доступ к размерам поля
+    int getFullWidth() const;
+    int getFullHeight() const;
 
     // массив ячеек игрового поля
     Cell **cell;

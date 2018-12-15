@@ -147,6 +147,51 @@ void Field::createField(GameSettings *settings)
     // определение положения ям
     if (settings->holeTypeNum() != 0)
         setHoles(settings);
+
+    // создание информации о поле для игрока
+    createStartFieldInfo();
+}
+
+// создание информации о поле для игрока
+void Field::createStartFieldInfo()
+{
+    // закрытие всех ячеек
+    for (int y = 0; y < yNum; y+=1)
+    {
+        for (int x = 0; x < xNum; x+=1)
+        {
+            cell[y][x].setVisibilityState(false);
+            cell[y][x].setClickabilityState(false);
+        }
+    }
+
+    // открытие колон
+    for (int y = 1; y < yNum-1; y+=2)
+    {
+        for (int x = 1; x < xNum-1; x+=2)
+        {
+            cell[y][x].setVisibilityState(true);
+        }
+    }
+
+    // открытие клеток доступных для клика игрока
+     for (int y = 2; y < yNum-2; y += 2)
+     {
+         for (int x = 2; x < xNum-2; x += 2)
+         {
+             cell[y][x].setClickabilityState(true);
+         }
+     }
+}
+
+int Field::getFullWidth() const
+{
+    return xNum;
+}
+
+int Field::getFullHeight() const
+{
+    return yNum;
 }
 //--------------------------------------------------------------------------------
 

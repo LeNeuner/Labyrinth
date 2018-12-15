@@ -1,7 +1,7 @@
 #ifndef CONSTLIST_H
 #define CONSTLIST_H
 
-// GENERAL LIMITS
+// GENERAL LIMITS & CONSTANTS
 
 // DEFAULT GAME SETTINGS
 const int       DEFAULT_PLAYER_NUM          = 1;
@@ -20,6 +20,7 @@ const int       DEFAULT_HOLE_TYPE_NUM       = 2;
 // GRAPHICS SETTINGS
 const int       DEFAULT_BIG_PICTURE_SIZE    = 49;
 const int       DEFAULT_SMALL_PICTURE_SIZE  = 7;
+const double    DEFAULT_CLOSED_CELL_OPACITY = 0.3;
 
 #endif // CONSTLIST_H
 

@@ -58,18 +58,28 @@ void PlayerFieldInfo::createPlayerField(GameSettings *settings)
      {
          for (int x = 0; x < xNum; x+=1)
          {
-             playerCell[y][x].setCellState(CellState::Closed);
+             playerCell[y][x].setVisibilityState(false);
+             playerCell[y][x].setClickabilityState(false);
          }
      }
 
      // открытие колон
-     for (int y = 3; y < yNum-3; y+=2)
+     for (int y = 1; y < yNum-1; y+=2)
      {
-         for (int x = 3; x < xNum-3; x+=2)
+         for (int x = 1; x < xNum-1; x+=2)
          {
-             playerCell[y][x].setCellState(CellState::Opened);
+             playerCell[y][x].setVisibilityState(true);
          }
      }
+
+     // открытие клеток доступных для клика игрока
+      for (int y = 2; y < yNum-2; y += 2)
+      {
+          for (int x = 2; x < xNum-2; x += 2)
+          {
+              playerCell[y][x].setClickabilityState(true);
+          }
+      }
 
      // установка стартового состояния полей (трава, бетон) (полупрозрачно)
 //     setBasicFields();

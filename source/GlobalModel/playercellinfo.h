@@ -3,19 +3,25 @@
 
 #include "globalModel_global.h"
 
-// видимость (открытость) ячейки для игрока
-enum class CellState : unsigned int
-{
-    Opened,
-    Closed
-};
+//// видимость (открытость) ячейки для игрока
+//enum class VisibilityState : unsigned int
+//{
+//    Opened,
+//    Closed
+//};
 
+//// доступность ячейки для выбора
+//enum class ClickabilityState : unsigned int
+//{
+//    Allowed,
+//    Prohibited
+//};
 
 class GLOBALMODELSHARED_EXPORT PlayerCellInfo
 {
 public:
     PlayerCellInfo();
-    PlayerCellInfo(CellState cState);
+    PlayerCellInfo(bool isVisible, bool isClickable);
 
 //    void setCellTypes(FormType fType, MaterialType mType, ObjectType oType,
 //                      ObjectState oState);
@@ -29,20 +35,21 @@ public:
 //    void setObjectType(ObjectType type);
 //    ObjectType objectType();
 
-    void setCellState(CellState state);
-    CellState cellState();
+//    void setCellVisibilityState(VisibilityState state);
+//    VisibilityState cellVisibilityState();
 
 
-//    void setBlocked(bool blocked);
-//    bool blocked();
-//    void setVisited(bool visited);
-//    bool visited();
-
-//    int  testVisitedNum = 0;
+    void setVisibilityState(bool isVisible);
+    bool visible();
+    void setClickabilityState(bool isClickable);
+    bool clickable();
 
 private:
 
-    CellState     m_cellState;
+//    VisibilityState     m_cellVisState;
+
+    bool m_isVisibleCell    = false;
+    bool m_isClickableCell  = false;
 //    MaterialType m_materialType;
 //    ObjectType   m_objectType;
 //    ObjectState  m_objectState;

@@ -308,9 +308,11 @@ QGraphicsScene *LabyGraphicsScene::updatePlayerScene(GlobalModel *model)
 {
     //--------------------------------------------------
     // установка поля
+    int scnW = static_cast<int>(scene->width());
+    int scnH = static_cast<int>(scene->height());
     QPixmap *bGrass  = new QPixmap(QLatin1String(":resources/images/bigGrass.jpg"));
-    QPixmap bigGrass = bGrass->scaled(scene->width()+200, scene->height()+100, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
-    scene->setBackgroundBrush(Qt::white);
+    QPixmap bigGrass = bGrass->scaled(scnW+200, scnH-100, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+    scene->setBackgroundBrush(/*bigGrass*/Qt::white);
 
     //--------------------------------------------------
     // отрисовка в соответствии с новой моделью
@@ -362,7 +364,7 @@ QGraphicsScene *LabyGraphicsScene::updatePlayerScene(GlobalModel *model)
 
             // отрисовка закрытых и открытых для пользователя ячеек
             double closedOpacity = 0.3;
-            if (model->playerFieldModel->playerCell[y][x].cellState() == CellState::Closed)
+            if (!model->playerFieldModel->playerCell[y][x].visible())
             {
                 if (model->fieldModel->cell[y][x].materialType() == MaterialType::Grass)
                     currPixmap = pixmaps->grass();

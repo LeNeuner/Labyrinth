@@ -2,13 +2,35 @@
 
 PlayerCellInfo::PlayerCellInfo()
 {
-    m_cellState = CellState::Closed;
 }
 
-PlayerCellInfo::PlayerCellInfo(CellState cState)
+PlayerCellInfo::PlayerCellInfo(bool isVisible, bool isClickable)
 {
-    m_cellState     = cState;
+    m_isVisibleCell     = isVisible;
+    m_isClickableCell   = isClickable;
 }
+
+void PlayerCellInfo::setVisibilityState(bool isVisible)
+{
+    m_isVisibleCell = isVisible;
+}
+
+bool PlayerCellInfo::visible()
+{
+    return  m_isVisibleCell;
+}
+
+void PlayerCellInfo::setClickabilityState(bool isClickable)
+{
+    m_isClickableCell = isClickable;
+}
+
+bool PlayerCellInfo::clickable()
+{
+    return m_isClickableCell;
+}
+
+
 
 //void Cell::setCellTypes(FormType fType, MaterialType mType, ObjectType oType, ObjectState oState)
 //{
@@ -45,14 +67,14 @@ PlayerCellInfo::PlayerCellInfo(CellState cState)
 //    return m_objectType;
 //}
 
-void PlayerCellInfo::setCellState(CellState state)
-{
-    m_cellState = state;
-}
-CellState PlayerCellInfo::cellState()
-{
-    return m_cellState;
-}
+//void PlayerCellInfo::setCellVisibilityState(CellVisibilityState state)
+//{
+//    m_cellVisState = state;
+//}
+//CellVisibilityState PlayerCellInfo::cellVisibilityState()
+//{
+//    return m_cellVisState;
+//}
 
 
 

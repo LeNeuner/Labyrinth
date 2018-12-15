@@ -29,6 +29,12 @@ bool EngineManager::newGameInitialization()
 
     // PLAYER CREATION
 
+    // WAIT START PLAYER POSITION
+//    while (true)
+//    {
+
+//    }
+
     // START GAME
 //    while (true)
 //    {

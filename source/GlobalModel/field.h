@@ -8,6 +8,7 @@
 #include "gamesettings.h"
 #include "cell.h"
 #include "position.h"
+#include "playerfieldinfo.h"
 
 
 class GLOBALMODELSHARED_EXPORT Field : public QObject
@@ -24,7 +25,7 @@ public:
     void createField(GameSettings *settings);
 
     // создание информации о поле для игрока
-    void createStartFieldInfo();
+    void createStartFieldInfo(GameSettings *settings);
 
     // открыть все поле
     void setFieldsVisibility(bool isVisible);
@@ -36,10 +37,12 @@ public:
     int getFullHeight() const;
 
     // массив ячеек игрового поля
+    // need change to 2d vector
     Cell **cell;
+    std::vector<std::vector<Cell>> vcell;
 
 signals:
-    void fieldStateUpdated();
+    void cellOpened(int x, int y);
 
 private:
 
@@ -53,6 +56,9 @@ private:
     int xNum;
     int yNum;
 
+    // field info for players
+    int playersNum;
+    std::vector<PlayerFieldInfo> fieldInfo;
 
     //--------------------------------------------------
     // ФУНКЦИИ ДЛЯ ГЕНЕРАЦИИ ПОЛЯ

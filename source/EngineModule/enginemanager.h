@@ -25,6 +25,9 @@ public:
 signals:
     void needSceneUpdate();
 
+public slots:
+    void prepareNextStep(int x, int y);
+
 private:
     GlobalModel         *glModel = nullptr;
 };

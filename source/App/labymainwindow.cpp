@@ -142,8 +142,10 @@ void LabyMainWindow::initConnects()
 {
     connect(this->engineManager, SIGNAL(needSceneUpdate()),
             this, SLOT(createNewGame()));
-    connect(this->glModel->playerFieldModel, SIGNAL(fieldStateUpdated()),
-            this, SLOT(createNewGame()));
+    connect(this->glModel->playerFieldModel, &Field::cellOpened,
+            this->engineManager, &EngineManager::prepareNextStep);
+    connect(this->glModel->fieldModel, &Field::cellOpened,
+            this->engineManager, &EngineManager::prepareNextStep);
 }
 //--------------------------------------------------
 

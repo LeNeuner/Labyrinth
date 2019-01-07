@@ -29,6 +29,9 @@ private:
     QGraphicsGridLayout     *m_grid    = nullptr;
     PixmapKeeper            *m_pixmaps = nullptr;
 
+    QGraphicsScene          *m_scene2  = nullptr;
+    QGraphicsGridLayout     *m_grid2   = nullptr;
+
     void    clearScene(GlobalModel* model);
     QSizeF  getCellSize(const Cell &cell);
     double  getOpacity(const Cell &cell);

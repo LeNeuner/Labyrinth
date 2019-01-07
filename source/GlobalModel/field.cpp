@@ -147,14 +147,21 @@ void Field::createField(GameSettings *settings)
     // определение положения ям
     if (settings->holeTypeNum() != 0)
         setHoles(settings);
-
-    // создание информации о поле для игрока
-    createStartFieldInfo();
 }
 
 // создание информации о поле для игрока
-void Field::createStartFieldInfo()
+void Field::createStartFieldInfo(GameSettings *settings)
 {
+    // create field info for all players
+    int playersNum = settings->personNum();
+    for (int i = 0; i < playersNum; ++i)
+    {
+        // PlayerFieldInfo
+        //...
+        //fieldInfo.push_back();
+    }
+
+
     // закрытие всех ячеек
     for (int y = 0; y < yNum; y+=1)
     {
@@ -211,9 +218,13 @@ void Field::setFieldsClickability(bool isClickable)
 // open cell
 void Field::openCell(int x, int y)
 {
+    // disable click after step
+    cell[y][x].setClickabilityState(false);
+
     qDebug() << "Cell: " << x << y;
     cell[y][x].setVisibilityState(true);
 
+    // dynamic opening if cell include treasure
     if ((cell[y][x].objectType() == ObjectType::RealTreasure) ||
         (cell[y][x].objectType() == ObjectType::FakeTreasure))
     {
@@ -223,7 +234,14 @@ void Field::openCell(int x, int y)
         cell[y][x+1].setVisibilityState(true);
     }
 
-    emit fieldStateUpdated();
+    // open for click new cells
+    cell[y-2][x].setClickabilityState(true);
+    cell[y+2][x].setClickabilityState(true);
+    cell[y][x-2].setClickabilityState(true);
+    cell[y][x+2].setClickabilityState(true);
+
+    // opening signal to engine module
+    emit cellOpened(x, y);
 }
 
 int Field::getFullWidth() const

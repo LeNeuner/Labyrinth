@@ -33,6 +33,7 @@ public:
     //
     // массив ячеек поля (как его видит игрок)
     PlayerCellInfo **playerCell = nullptr;
+    std::vector<std::vector<PlayerCellInfo>> pcell;
 
 private:
 

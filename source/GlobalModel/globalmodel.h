@@ -6,6 +6,7 @@
 #include "globalModel_global.h"
 #include "gamesettings.h"
 #include "field.h"
+#include "players.h"
 
 class GLOBALMODELSHARED_EXPORT GlobalModel : public QObject
 {
@@ -18,10 +19,7 @@ public:
 
     GameSettings    *gameSettModel;
     Field           *fieldModel;
-
-private:
-    GameSettings m_gameSettingsModel;
-    Field        m_fieldModel;
+    Players         *playersModel;
 };
 
 #endif // GLOBALMODEL_H

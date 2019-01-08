@@ -27,7 +27,8 @@ HEADERS += \
             constlist.h             \
             errorslist.h            \
             playercellinfo.h        \
-            playerfieldinfo.h
+            playerfieldinfo.h \
+    players.h
 
 SOURCES += \
             globalmodel.cpp         \
@@ -36,7 +37,8 @@ SOURCES += \
             gamesettings.cpp        \
             player.cpp              \
             playercellinfo.cpp      \
-            playerfieldinfo.cpp
+            playerfieldinfo.cpp \
+    players.cpp
 
 win32 {
     QMAKE_TARGET_PRODUCT = GlobalModel.dll 

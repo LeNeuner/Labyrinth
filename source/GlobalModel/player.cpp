@@ -1,27 +1,22 @@
 #include "player.h"
 
-Player::Player(int id, const QString &name, QColor color, Position pos)
+Player::Player(int id) :
+    m_ID(id)
 {
-    m_ID            = id;
-//    m_name          = name;
-    m_playerColor   = color;
-
-    m_playerPos     = pos;
 }
 
 Player::~Player()
 {
-
 }
 
 // установка ID игрока
 void Player::setID(int id)
 {
-
+    m_ID = id;
 }
 
 // получение ID игрока
 int Player::ID()
 {
-    return 0;
+    return m_ID;
 }

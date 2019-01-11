@@ -22,8 +22,11 @@ EngineManager::~EngineManager()
 // инициализация новой игры
 bool EngineManager::newGameInitialization()
 {
-    // FIELD GENERATION
+    // field generation
     glModel->fieldModel->createField(glModel->gameSettModel);
+
+    // create new players
+    glModel->playersModel->createPlayers();
 
     // FIELD INFO FOR PLAYERS
     glModel->fieldModel->createStartFieldInfo(glModel->gameSettModel);

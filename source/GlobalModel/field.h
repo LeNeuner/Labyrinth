@@ -24,9 +24,6 @@ public:
     // создание игрового поля
     void createField(GameSettings *settings);
 
-    // создание информации о поле для игрока
-    void createStartFieldInfo(GameSettings *settings);
-
     // открыть все поле
     void setFieldsVisibility(bool isVisible);
     void setFieldsClickability(bool isClickable);
@@ -49,9 +46,6 @@ private:
     const int defaultWidth  = DEFAULT_FIELD_WIDTH;
     const int defaultHeight = DEFAULT_FIELD_HEIGHT;
 
-    // play area field
-    int width;
-    int height;
     // all cell field
     int xNum;
     int yNum;

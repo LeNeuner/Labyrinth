@@ -12,8 +12,6 @@
 
 Field::Field(QObject *parent) :
     QObject(parent),
-    width(defaultWidth),
-    height(defaultHeight),
     xNum(defaultWidth * 2 + 3),
     yNum(defaultHeight *2 + 3)
 {
@@ -33,10 +31,9 @@ Field::~Field()
 // установить поле в значения по умолчаниию
 void Field::setDefaults()
 {
-    width   = defaultWidth;
-    height  = defaultHeight;
-    xNum    = width  * 2 + 3;
-    yNum    = height * 2 + 3;
+    // set default full width and height
+    xNum = defaultWidth  * 2 + 3;
+    yNum = defaultHeight * 2 + 3;
 
     // создание поля соответствующего размера
     cell = new Cell* [yNum];
@@ -87,10 +84,8 @@ void Field::setDefaults()
 void Field::createField(GameSettings *settings)
 {
     // получение значения настроек поля
-    width   = settings->fieldWidth();
-    height  = settings->fieldHeight();
-    xNum    = width  * 2 + 3;
-    yNum    = height * 2 + 3;
+    xNum    = settings->fieldFullWidth();
+    yNum    = settings->fieldFullHeight();
 
     // очистка предыдущего поля
     if (cell != nullptr)
@@ -147,48 +142,6 @@ void Field::createField(GameSettings *settings)
     // определение положения ям
     if (settings->holeTypeNum() != 0)
         setHoles(settings);
-}
-
-// создание информации о поле для игрока
-void Field::createStartFieldInfo(GameSettings *settings)
-{
-    // create field info for all players
-    int playersNum = settings->personNum();
-    for (int i = 0; i < playersNum; ++i)
-    {
-        // PlayerFieldInfo
-        //...
-        //fieldInfo.push_back();
-    }
-
-
-    // закрытие всех ячеек
-    for (int y = 0; y < yNum; y+=1)
-    {
-        for (int x = 0; x < xNum; x+=1)
-        {
-            cell[y][x].setVisibilityState(false);
-            cell[y][x].setClickabilityState(false);
-        }
-    }
-
-    // открытие всех колон
-    for (int y = 1; y < yNum-1; y+=2)
-    {
-        for (int x = 1; x < xNum-1; x+=2)
-        {
-            cell[y][x].setVisibilityState(true);
-        }
-    }
-
-    // открытие клеток доступных для клика игрока
-     for (int y = 2; y < yNum-2; y += 2)
-     {
-         for (int x = 2; x < xNum-2; x += 2)
-         {
-             cell[y][x].setClickabilityState(true);
-         }
-     }
 }
 
 // set all fields visibility

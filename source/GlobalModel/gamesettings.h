@@ -13,8 +13,10 @@ public:
 
     void setFieldWidth(int width);
     int  fieldWidth();
+    int  fieldFullWidth();
     void setFieldHeight(int height);
     int  fieldHeight();
+    int  fieldFullHeight();
     void setFieldExitNum(int exitNum);
     int  fieldExitNum();
 
@@ -47,16 +49,18 @@ private:
     const int defAmmunitionNum   = DEFAULT_AMMUNITION_NUM;
     const int defGrenadeNum      = DEFAULT_GRENADE_NUM;
 
-    int _fieldWidth;
-    int _fieldHeight;
-    int _fieldExitNum;
-    int _realTreasureNum;
-    int _fakeTreasureNum;
-    int _arsenalNum;
-    int _holeTypeNum;
-    int _personNum;
-    int _ammunitionNum;
-    int _grenadeNum;
+    int m_fieldWidth;
+    int m_fieldHeight;
+    int m_fieldFullWidth;
+    int m_fieldFullHeight;
+    int m_fieldExitNum;
+    int m_realTreasureNum;
+    int m_fakeTreasureNum;
+    int m_arsenalNum;
+    int m_holeTypeNum;
+    int m_personNum;
+    int m_ammunitionNum;
+    int m_grenadeNum;
 };
 
 #endif // GAMESETTINGS_H

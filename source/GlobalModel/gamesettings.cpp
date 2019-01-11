@@ -2,132 +2,146 @@
 
 GameSettings::GameSettings(QObject *parent) :
     QObject(parent),
-    _fieldWidth(defFieldWidth),
-    _fieldHeight(defFieldHeight),
-    _fieldExitNum(defFieldExitNum),
-    _realTreasureNum(defRealTreasureNum),
-    _fakeTreasureNum(defFakeTreasureNum),
-    _arsenalNum(defArsenalNum),
-    _holeTypeNum(defHoleTypeNum),
-    _personNum(defPersonNum),
-    _ammunitionNum(defAmmunitionNum),
-    _grenadeNum(defGrenadeNum)
+    m_fieldWidth(defFieldWidth),
+    m_fieldHeight(defFieldHeight),
+    m_fieldExitNum(defFieldExitNum),
+    m_realTreasureNum(defRealTreasureNum),
+    m_fakeTreasureNum(defFakeTreasureNum),
+    m_arsenalNum(defArsenalNum),
+    m_holeTypeNum(defHoleTypeNum),
+    m_personNum(defPersonNum),
+    m_ammunitionNum(defAmmunitionNum),
+    m_grenadeNum(defGrenadeNum)
 {
 }
 
 void GameSettings::setFieldWidth(int width)
 {
-    _fieldWidth = width;
+    m_fieldWidth = width;
+    m_fieldFullWidth = width * 2 + 3;
 }
 
 int GameSettings::fieldWidth()
 {
-    return _fieldWidth;
+    return m_fieldWidth;
+}
+
+int GameSettings::fieldFullWidth()
+{
+    return m_fieldFullWidth;
 }
 
 void GameSettings::setFieldHeight(int height)
 {
-    _fieldHeight = height;
+    m_fieldHeight = height;
+    m_fieldFullHeight = height * 2 + 3;
 }
 
 int GameSettings::fieldHeight()
 {
-    return _fieldHeight;
+    return m_fieldHeight;
+}
+
+int GameSettings::fieldFullHeight()
+{
+    return m_fieldFullHeight;
 }
 
 void GameSettings::setFieldExitNum(int exitNum)
 {
-    _fieldExitNum = exitNum;
+    m_fieldExitNum = exitNum;
 }
 
 int GameSettings::fieldExitNum()
 {
-    return _fieldExitNum;
+    return m_fieldExitNum;
 }
 
 
 void GameSettings::setRealTreasureNum(int treasureNum)
 {
-    _realTreasureNum = treasureNum;
+    m_realTreasureNum = treasureNum;
 }
 
 int GameSettings::realTreasureNum()
 {
-    return _realTreasureNum;
+    return m_realTreasureNum;
 }
 
 void GameSettings::setFakeTreasureNum(int treasureNum)
 {
-    _fakeTreasureNum = treasureNum;
+    m_fakeTreasureNum = treasureNum;
 }
 
 int GameSettings::fakeTreasureNum()
 {
-    return _fakeTreasureNum;
+    return m_fakeTreasureNum;
 }
 
 void GameSettings::setArsenalNum(int arsenalNum)
 {
-    _arsenalNum = arsenalNum;
+    m_arsenalNum = arsenalNum;
 }
 
 int GameSettings::arsenalNum()
 {
-    return _arsenalNum;
+    return m_arsenalNum;
 }
 
 void GameSettings::setHoleTypeNum(int holeTypeNum)
 {
-    _holeTypeNum = holeTypeNum;
+    m_holeTypeNum = holeTypeNum;
 }
 
 int GameSettings::holeTypeNum()
 {
-    return _holeTypeNum;
+    return m_holeTypeNum;
 }
 
 void GameSettings::setPersonNum(int personNum)
 {
-    _personNum = personNum;
+    m_personNum = personNum;
 }
 
 int GameSettings::personNum()
 {
-    return _personNum;
+    return m_personNum;
 }
 
 void GameSettings::setAmmunitionNum(int ammunitionNum)
 {
-    _ammunitionNum = ammunitionNum;
+    m_ammunitionNum = ammunitionNum;
 }
 
 int GameSettings::ammunitionNum()
 {
-    return _ammunitionNum;
+    return m_ammunitionNum;
 }
 
 void GameSettings::setGrenadeNum(int grenadeNum)
 {
-    _grenadeNum = grenadeNum;
+    m_grenadeNum = grenadeNum;
 }
 
 int GameSettings::grenadeNum()
 {
-    return _grenadeNum;
+    return m_grenadeNum;
 }
 
 
 void GameSettings::setDefaults()
 {
-    _fieldWidth      = defFieldWidth;
-    _fieldHeight     = defFieldHeight;
-    _fieldExitNum    = defFieldExitNum;
-    _realTreasureNum = defRealTreasureNum;
-    _fakeTreasureNum = defFakeTreasureNum;
-    _arsenalNum      = defArsenalNum;
-    _holeTypeNum     = defHoleTypeNum;
-    _personNum       = defPersonNum;
-    _ammunitionNum   = defAmmunitionNum;
-    _grenadeNum      = defGrenadeNum;
+    m_fieldWidth      = defFieldWidth;
+    m_fieldHeight     = defFieldHeight;
+    m_fieldFullWidth  = defFieldWidth * 2 + 3;
+    m_fieldFullHeight = defFieldHeight * 2 + 3;
+    m_fieldExitNum    = defFieldExitNum;
+    m_realTreasureNum = defRealTreasureNum;
+    m_fakeTreasureNum = defFakeTreasureNum;
+    m_arsenalNum      = defArsenalNum;
+    m_holeTypeNum     = defHoleTypeNum;
+    m_personNum       = defPersonNum;
+    m_ammunitionNum   = defAmmunitionNum;
+    m_grenadeNum      = defGrenadeNum;
 }
 

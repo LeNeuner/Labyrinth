@@ -10,7 +10,8 @@
 #include <QObject>
 #include <QColor>
 #include "position.h"
-#include "playerfieldinfo.h"
+//#include "playerfieldinfo.h"
+#include "playercellinfo.h"
 
 // состояние игрока
 enum class PlayerState : unsigned int
@@ -29,12 +30,13 @@ enum class PlayerControl : unsigned int
 class Player
 {
 public:
-    Player(int id, const QString &name, QColor color, Position pos);
+    Player(int id);
     ~Player();
 
-    // установка/получение ID
     void setID(int id);
     int ID();
+
+    std::vector<std::vector<PlayerCellInfo>> pcell;
 
 private:
     int             m_ID            = -1;
@@ -43,7 +45,8 @@ private:
     PlayerState     m_playerState   = PlayerState::Healthy;
     PlayerControl   m_playerControl = PlayerControl::Human;
     Position        m_playerPos;
-    PlayerFieldInfo *m_playerField;
+
+//    PlayerFieldInfo m_playerField;
 //    Position currPos();
 };
 
